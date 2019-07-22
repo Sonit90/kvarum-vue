@@ -1,0 +1,1 @@
+yii migrate/create add_lft_column_rgt_column_depth_column_to_firm_table --fields="lft:integer:notNull,rgt:integer:notNull,depth:integer:notNull"

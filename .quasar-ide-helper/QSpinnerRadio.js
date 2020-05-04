@@ -8,7 +8,7 @@ export default {
   name: 'QSpinnerRadio',
   props: {
     /**
-     * Size in CSS units, including unit name
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
      * @type {String}
      */
     size: {

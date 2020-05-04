@@ -46,6 +46,13 @@ export default {
      */
     elevated: {
       type: Boolean,
+    },
+    /**
+     * When using SSR, you can optionally hint of the height (in pixels) of the QHeader
+     * @type {Number|String }
+     */
+    heightHint: {
+      type: [Number,String ],
     }
   }
 }

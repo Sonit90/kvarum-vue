@@ -8,10 +8,24 @@ export default {
   name: 'QRadio',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
     /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {Number|String}

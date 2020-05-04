@@ -20,8 +20,20 @@ export default {
     '@right': function (details) {},
 
     /**
+     * Emitted when user finished sliding the item up
+     * @param {{reset : Function}} details Details 
+     */      
+    '@top': function (details) {},
+
+    /**
+     * Emitted when user finished sliding the item down
+     * @param {{reset : Function}} details Details 
+     */      
+    '@bottom': function (details) {},
+
+    /**
      * Emitted when user finished sliding the item to either sides
-     * @param {{side : 'left'|'right', reset : Function}} details Details 
+     * @param {{side : 'left'|'right'|'top'|'bottom', reset : Function}} details Details 
      */      
     '@action': function (details) {},
     /**
@@ -37,6 +49,27 @@ export default {
      */
     rightColor: {
       type: String,
+    },
+    /**
+     * Color name for top-side background from the Quasar Color Palette
+     * @type {String}
+     */
+    topColor: {
+      type: String,
+    },
+    /**
+     * Color name for bottom-side background from the Quasar Color Palette
+     * @type {String}
+     */
+    bottomColor: {
+      type: String,
+    },
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
     }
   }
 }

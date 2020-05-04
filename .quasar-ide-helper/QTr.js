@@ -13,6 +13,13 @@ export default {
      */
     props: {
       type: Object,
+    },
+    /**
+     * Disable hover effect
+     * @type {Boolean}
+     */
+    noHover: {
+      type: Boolean,
     }
   }
 }

@@ -8,10 +8,24 @@ export default {
   name: 'QRating',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
     /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {Number}
@@ -27,25 +41,53 @@ export default {
       type: [Number,String],
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
-     * @type {String}
+     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)
+     * @type {String|Array}
      */
     icon: {
-      type: String,
+      type: [String,Array],
     },
     /**
-     * Color name for component from the Quasar Color Palette
-     * @type {String}
+     * Icon name following Quasar convention to be used when selected (optional); make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)
+     * @type {String|Array}
+     */
+    iconSelected: {
+      type: [String,Array],
+    },
+    /**
+     * Icon name following Quasar convention to be used when selected (optional); make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)
+     * @type {String|Array}
+     */
+    iconHalf: {
+      type: [String,Array],
+    },
+    /**
+     * Color name for component from the Quasar Color Palette; v1.5.0+: If an array is provided each rating value will use the corresponding color in the array (0 based)
+     * @type {String|Array}
      */
     color: {
-      type: String,
+      type: [String,Array],
     },
     /**
-     * Size in CSS units, including unit name
-     * @type {String}
+     * Color name from the Quasar Palette for selected icons
+     * @type {String|Array}
      */
-    size: {
-      type: String,
+    colorSelected: {
+      type: [String,Array],
+    },
+    /**
+     * Color name from the Quasar Palette for half selected icons
+     * @type {String|Array}
+     */
+    colorHalf: {
+      type: [String,Array],
+    },
+    /**
+     * Does not lower opacity for unselected icons
+     * @type {Boolean}
+     */
+    noDimming: {
+      type: Boolean,
     },
     /**
      * When used, disables default behavior of clicking/tapping on icon which represents current model value to reset model to 0

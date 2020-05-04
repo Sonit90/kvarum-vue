@@ -1,40 +1,61 @@
 <template>
-    <div>
-        <q-breadcrumbs active-color="white" class="text-orange-13" separator-color="white">
-            <q-breadcrumbs-el icon="home" to="/" />
-            <q-breadcrumbs-el v-for="(breadcrumb, index) in breadCrumbList" :key="index"  :label="breadcrumb.name" :icon="breadcrumb.icon" :to="breadcrumb.link" :class="{'active':!!breadcrumb.link}" />
-<!--            <q-breadcrumbs-el label="Breadcrumbs" icon="navigation" to="/vue-components/breadcrumbs" />-->
-<!--            <q-breadcrumbs-el label="Build" icon="build" />-->
-        </q-breadcrumbs>
-    </div>
+  <q-breadcrumbs
+    v-show="$q.screen.gt.sm"
+    active-color="white"
+    separator-color="white"
+    class="LayoutBreadcrumbs"
+  >
+    <q-breadcrumbs-el
+      icon="home"
+      to="/"
+    />
+    <q-breadcrumbs-el
+      v-for="breadcrumb in breadCrumbs"
+      :key="breadcrumb.name"
+      :label="breadcrumb.name"
+      :icon="breadcrumb.icon"
+      :to="breadcrumb.link"
+    />
+  </q-breadcrumbs>
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields'
 export default {
-  name: 'Breadcrumbs',
-  data () {
-    return {
-      breadCrumbList: []
-    }
-  },
-  mounted () {
-    this.updateList()
-  },
-  watch: { '$route' () { this.updateList() }
+  computed: {
+    ...mapFields(
+      'flats',
+      [
+        'title'
+      ]
+    ),
+    breadCrumbs () {
+      let breadCrumbList = this.$route.meta.breadcrumb
+      if (typeof breadCrumbList === 'undefined') {
+        breadCrumbList = []
+        breadCrumbList.push({ name: 'Главная', link: '/' }, { name: this.title })
+        return breadCrumbList
+      }
+      if ( typeof breadCrumbList[breadCrumbList.length - 1].link !== 'undefined') {
+          //console.log('breadrumbs')
+          //console.log(this.title)
+          breadCrumbList.push({ name: this.title })
+        }else{
+          if(this.title !== null){
+            breadCrumbList[breadCrumbList.length - 1].name=this.title
+          }
 
-  },
-  methods: {
-    // routeTo (pRouteTo) {
-    //   if (this.breadCrumbList[pRouteTo].link) this.$router.push(this.breadCrumbList[pRouteTo].link)
-    // },
-    updateList () {
-      console.log(this.$route.meta)
-      this.breadCrumbList = this.$route.meta.breadcrumb
+
+        }
+
+      return breadCrumbList
     }
-  }
+  },
+  name: 'Breadcrumbs'
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus">
+  .q-breadcrumbs--last
+    font-weight: bold
 </style>

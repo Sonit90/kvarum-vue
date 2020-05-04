@@ -8,7 +8,7 @@ export default {
   name: 'QPagination',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {String} value New model value 
      */      
     '@input': function (value) {},
@@ -43,11 +43,18 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
       type: String,
+    },
+    /**
+     * Notify the component that the background is a dark color (useful when you are using it along with the 'input' prop)
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
     },
     /**
      * Style definitions to be attributed to the input (if using one)
@@ -83,6 +90,13 @@ export default {
      */
     input: {
       type: Boolean,
+    },
+    /**
+     * Generate link for page buttons; For best performance, reference it from your scope and do not define it inline
+     * @type {Function}
+     */
+    toFn: {
+      type: Function,
     },
     /**
      * Show boundary button links

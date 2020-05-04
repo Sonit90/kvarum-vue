@@ -7,22 +7,32 @@ module.exports = function (ctx) {
     // --> boot files are part of "main.js"
     boot: [
       'axios',
-      'notify-defaults'
+      'notify-defaults',
+      'currencyFilter',
+      'vuelidate',
+      'yandexMap',
+      'timeFilter',
+      'CASL',
+      'declOfNum',
+      'Sentry',
+      'portal',
+      'webWorker'
     ],
 
-    css: [
-      'app.styl'
-    ],
+    // css: [
+    //   'app.styl'
+    // ],
+    // preFetch:true,
 
     extras: [
       // 'ionicons-v4',
       // 'mdi-v3',
-      // 'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+       'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
+      //'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
     ],
 
@@ -60,6 +70,7 @@ module.exports = function (ctx) {
         'QCheckbox',
         'QCard',
         'QCardSection',
+        'QCardActions',
         'QSpinnerGears',
         'QSelect',
         'QOptionGroup',
@@ -69,30 +80,79 @@ module.exports = function (ctx) {
         'QSplitter',
         'QPopupEdit',
         'QEditor',
-        'QPageSticky'
+        'QSpinnerDots',
+        'QPagination',
+        'QMenu',
+        'QRadio',
+        'QStepper',
+        'QStep',
+        'QStepperNavigation',
+        'QBanner',
+        'QBtnToggle',
+        'QTooltip',
+        'QChip',
+        'QUploader',
+        'QUploaderAddTrigger',
+        'QKnob',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+        'QRating',
+        'QTabPanels',
+        'QTabPanel',
+        'QTabs',
+        'QSpinner',
+        'QTab',
+        'QField',
+        'QSlideTransition',
+        'QToggle',
+        'QDialog',
+        'QExpansionItem',
+        'QBadge',
+        'QPageSticky',
+        'QPageScroller',
+        'QLinearProgress',
+        'QInnerLoading'
       ],
 
       directives: [
+        'GoBack',
         'Ripple',
-        'ClosePopup'
+        'ClosePopup',
+        'TouchPan',
+        'TouchSwipe'
       ],
 
       // Quasar plugins
       plugins: [
         'Notify',
-        'LocalStorage'
+        'LocalStorage',
+        'Loading',
+        'Meta',
+        'Dialog'
       ]
     },
 
     supportIE: false,
 
     build: {
+      env: ctx.dev
+        ? { // so on dev we'll have
+          API: JSON.stringify('http://api.kvarum.test/api/'),
+          URL: JSON.stringify('http://api.kvarum.test/')
+        }
+        : { // and on build (production):
+          API: JSON.stringify('https://test.kvarum.ru/api/'),
+          URL: JSON.stringify('https://test.kvarum.ru/')
+
+        },
       scopeHoisting: true,
       vueRouterMode: 'history',
-      // vueCompiler: true,
-      // gzip: true,
-      // analyze: true,
-      // extractCSS: false,
+       gzip: false,
+       analyze: false,
+      vueCompiler:true,
+       extractCSS: false,
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
@@ -109,11 +169,26 @@ module.exports = function (ctx) {
     devServer: {
       // https: true,
       // port: 8080,
+      proxy: {
+        // proxy all requests starting with /api to jsonplaceholder
+        '/api': {
+          target: 'http://api.kvarum.test',
+          changeOrigin: true,
+        },
+        '/uploads': {
+          target: 'http://api.kvarum.test',
+          changeOrigin: true,
+        }
+      },
       open: true // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
-    animations: [],
+    // animations: [],
+    animations: [
+      'fadeIn',
+      'fadeOut'
+    ],
 
     ssr: {
       pwa: false
@@ -123,9 +198,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Printax Ticket System',
-        // short_name: 'Printax Ticket System',
-        // description: 'Printax Ticket System',
+        name: '1Printax Ticket System',
+        short_name: '1Printax Ticket System',
+        description: '1Printax Ticket System',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

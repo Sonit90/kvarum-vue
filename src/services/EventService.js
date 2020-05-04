@@ -1,29 +1,4 @@
-import axios from 'axios'
-
-import { LocalStorage } from 'quasar'
-
-const apiClient = axios.create({
-  baseURL: 'http://new-printax.ru/api/',
-  withCredentials: true,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + LocalStorage.getItem('token', '')
-  },
-  timeout: 10000
-})
-
-// apiClient.interceptors.request.use(
-//   config => {
-//     const token = LocalStorage.getItem('token', '')
-//     // config.headers.Authorization
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`
-//     }
-//     return config
-//   },
-//   error => Promise.reject(error)
-// )
+import {default as apiClient} from 'src/services/axios'
 
 const parameterizeArray = (key, arr) => {
   arr = arr.map(encodeURIComponent)
@@ -31,49 +6,113 @@ const parameterizeArray = (key, arr) => {
 }
 
 export default {
+  createFirm ({ title, parentId }) {
+    console.log('Создание фирмы в EventService')
+    return apiClient.post('/firm/create/', { parentId, title })
+  },
+  createFlat (flat) {
+    console.log(flat)
+    console.log('Создание квартиры в EventService')
+    return apiClient.post('/flats/create', flat)
+  },
+  updateFlat (flat) {
+    console.log(flat)
+    console.log('Редактирование квартиры в EventService')
+    return apiClient.post('/flats/update', flat)
+  },
+  deleteFirm ({ id }) {
+    console.log('Удаление фирмы в EventService')
+    return apiClient.post('/firm/delete/', { id })
+  },
+  deleteImage ({ uniqueId, order, obj_id  }) {
+    console.log('Удаление фото в EventService')
+    return apiClient.post('/images/delete', { uniqueId, order, obj_id  })
+  },
+  rotateImage({ uniqueId, obj_id, angle }){
+    console.log('Поворот фото в EventService')
+    return apiClient.post('/images/rotate', { uniqueId, obj_id, angle })
+  },
+  orderChange({ order, id  }) {
+    console.log('Изменился порядок фото в EventService')
+    return apiClient.post('/flats/order-change', {order, id  })
+  },
+  finalize ({ id, order }) {
+    console.log(order)
+    console.log('Завершающий этап создания квартиры в EventService')
+    return apiClient.post('/flats/finalize', { id, order })
+  },
+  getFirmProfiles ({ id }) {
+    console.log('getting firm profiles in EventService')
+    console.log(id)
+    return apiClient.get(`/profile/?per-page=100&firm=${id}`)
+  },
   getFirms () {
     console.log('getting firms in EventService')
     let request = '/firm/index'
     return apiClient.get(request)
   },
-  createFirm ({ title, parentId }) {
-    console.log('Создание фирмы в EventService')
-    return apiClient.post('/firm/create/', { title, parentId })
+  getFlat (id) {
+    console.log('getting flat in EventService')
+    return apiClient.get(`/flats/view?id=${id}&expand=sortimages,profile,agency`)
   },
+  getTableObjects (page, pageSize, filters, sortBy, expand) {
+    // console.log('getting table objects in EventService')
+    let sort = sortBy
 
-  getTickets (perPage, page, assignedTo, statuses) {
-    console.log('getting tickets in EventService')
-    var request = `/tickets/?per-page=${perPage}&_page=${page}&expand=profile,firm,assign&assigned_to=${assignedTo}`
-    if (statuses !== '') {
-      request += parameterizeArray('status', statuses)
+    let params
+    if (sort !== null) {
+      params = { page, sort }
+    } else {
+      params = { page }
     }
-    console.log(request)
+
+    let request = '/flats/?' + Object.keys(params).map(key => key + '=' + params[key]).join('&')
+    if (filters !== null) {
+      // request += '&' + JSON.stringify(filters)
+      let parsedFilters = this.parseFilters(filters)
+      if (parsedFilters !== null) {
+        request += '&' + parsedFilters
+      }
+    }
+    // console.log(expand)
+    if (expand !== '') {
+      request += '&expand=' + expand.join()
+    }
+    request += '&status=created'
+
+    if (pageSize !== '') {
+      request += `&perPage=${pageSize}`
+    }
+
+    // console.log(request)
+
     return apiClient.get(request)
-    // return apiClient.get('/tickets/3');
   },
-  getTicket (id) {
-    return apiClient.get(`/tickets/${id}`)
-  },
-  postTicket (ticket) {
-    return apiClient.post('/tickets', ticket)
-  },
-  closeTicket ({ id, reason, comment }) {
-    console.log('Закрытие тикета в EventService')
-    return apiClient.post('/tickets/close/', { id, reason, comment })
-  },
-  createTicket ({ section, priority, finishDue, title, description }) {
-    console.log('Создание тикета в EventService')
-    return apiClient.post('/tickets/create/', { section, priority, finishDue, title, description })
-  },
-  takeTicket (id) {
-    console.log('Берём тикет в работу в EventService, id=' + id)
-    return apiClient.post('/tickets/take/', { id })
-  },
-  startTicket (id) {
-    console.log('Начинаем работу над тикетом в EventService, id=' + id)
-    return apiClient.post('/tickets/start/', { id })
+  newFlat (flat) {
+    return apiClient.post('/flats/new', flat)
   },
   openTicket (id) {
     return apiClient.post('/tickets/open/', { id })
+  },
+  parseFilters (filters) {
+    let parsed = null
+    parsed = Object.keys(filters).map(
+      function (key, index) {
+        if (filters[key] !== null && typeof filters[key] !== 'undefined') {
+          if (Array.isArray(filters[key])) {
+            if (filters[key].length > 0) {
+              return key + '=' + filters[key]
+            }
+          } else {
+            return key + '=' + filters[key]
+          }
+        }
+      }).filter(item => item).join('&')
+    // console.log((parsed))
+    return parsed
+  },
+    updateFirm ({ node }) {
+    console.log('Изменение фирмы в EventService')
+    return apiClient.post('/firm/update/', { node })
   }
 }

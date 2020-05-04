@@ -8,6 +8,13 @@ export default {
   name: 'QInnerLoading',
   props: {
     /**
+     * Size in CSS units, including unit name, or standard size name (xs|sm|md|lg|xl), for the inner Spinner (unless using the default slot)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * State - loading or not
      * @type {Boolean}
      */
@@ -19,13 +26,6 @@ export default {
      * @type {String}
      */
     color: {
-      type: String,
-    },
-    /**
-     * Size in CSS units, including unit name, for Spinner (unless using the default slot)
-     * @type {String}
-     */
-    size: {
       type: String,
     },
     /**

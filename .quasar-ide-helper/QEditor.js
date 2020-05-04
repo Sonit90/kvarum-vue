@@ -8,7 +8,7 @@ export default {
   name: 'QEditor',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {String} value The pure HTML of the content 
      */      
     '@input': function (value) {},
@@ -17,6 +17,13 @@ export default {
      * @type {Boolean}
      */
     fullscreen: {
+      type: Boolean,
+    },
+    /**
+     * Changing route app won't exit fullscreen
+     * @type {Boolean}
+     */
+    noRouteFullscreenExit: {
       type: Boolean,
     },
     /**
@@ -53,6 +60,13 @@ export default {
      * @type {Boolean}
      */
     dense: {
+      type: Boolean,
+    },
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
       type: Boolean,
     },
     /**

@@ -37,76 +37,6 @@ export default {
      */      
     '@before-hide': function (evt) {},
     /**
-     * Controls state of fab actions (showing/hidden); Works best with v-model directive, otherwise use along listening to 'input' event
-     * @type {Boolean}
-     */
-    value: {
-      type: Boolean,
-    },
-    /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
-     * @type {String}
-     */
-    icon: {
-      type: String,
-    },
-    /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
-     * @type {String}
-     */
-    activeIcon: {
-      type: String,
-    },
-    /**
-     * Put component in disabled mode
-     * @type {Boolean}
-     */
-    disable: {
-      type: Boolean,
-    },
-    /**
-     * Direction to expand Fab Actions to
-     * @type {'up'|'right'|'down'|'left'}
-     */
-    direction: {
-      type: String,
-    },
-    /**
-     * Direction to expand Fab Actions to
-     * @type {'up'|'right'|'down'|'left'}
-     */
-    'direction="up" _': {
-      type: String,
-    },
-    /**
-     * Direction to expand Fab Actions to
-     * @type {'up'|'right'|'down'|'left'}
-     */
-    'direction="right" _': {
-      type: String,
-    },
-    /**
-     * Direction to expand Fab Actions to
-     * @type {'up'|'right'|'down'|'left'}
-     */
-    'direction="down" _': {
-      type: String,
-    },
-    /**
-     * Direction to expand Fab Actions to
-     * @type {'up'|'right'|'down'|'left'}
-     */
-    'direction="left" _': {
-      type: String,
-    },
-    /**
-     * By default, Fab Actions are hidden when user navigates to another route and this prop disables this behavior
-     * @type {Boolean}
-     */
-    persistent: {
-      type: Boolean,
-    },
-    /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
@@ -117,29 +47,29 @@ export default {
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="a" _': {
-      type: String,
+    'type="a"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="submit" _': {
-      type: String,
+    'type="submit"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="button" _': {
-      type: String,
+    'type="button"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="reset" _': {
-      type: String,
+    'type="reset"': {
+      type: Boolean,
     },
     /**
      * Use 'outline' design for Fab button
@@ -163,6 +93,13 @@ export default {
       type: Boolean,
     },
     /**
+     * Remove shadow
+     * @type {Boolean}
+     */
+    unelevated: {
+      type: Boolean,
+    },
+    /**
      * Color name for component from the Quasar Color Palette
      * @type {String}
      */
@@ -170,7 +107,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -181,6 +118,181 @@ export default {
      * @type {Boolean}
      */
     glossy: {
+      type: Boolean,
+    },
+    /**
+     * Display label besides the FABs, as external content
+     * @type {Boolean}
+     */
+    externalLabel: {
+      type: Boolean,
+    },
+    /**
+     * The label that will be shown when Fab is extended
+     * @type {String|Number}
+     */
+    label: {
+      type: [String,Number],
+    },
+    /**
+     * Position of the label around the icon
+     * @type {'top'|'right'|'bottom'|'left'}
+     */
+    labelPosition: {
+      type: String,
+    },
+    /**
+     * Position of the label around the icon
+     * @type {'top'|'right'|'bottom'|'left'}
+     */
+    'labelPosition="top"': {
+      type: Boolean,
+    },
+    /**
+     * Position of the label around the icon
+     * @type {'top'|'right'|'bottom'|'left'}
+     */
+    'labelPosition="right"': {
+      type: Boolean,
+    },
+    /**
+     * Position of the label around the icon
+     * @type {'top'|'right'|'bottom'|'left'}
+     */
+    'labelPosition="bottom"': {
+      type: Boolean,
+    },
+    /**
+     * Position of the label around the icon
+     * @type {'top'|'right'|'bottom'|'left'}
+     */
+    'labelPosition="left"': {
+      type: Boolean,
+    },
+    /**
+     * Hide the label; Useful for animation purposes where you toggle the visibility of the label
+     * @type {Boolean}
+     */
+    hideLabel: {
+      type: Boolean,
+    },
+    /**
+     * Class definitions to be attributed to the label container
+     * @type {Array|String|Object}
+     */
+    labelClass: {
+      type: [Array,String,Object],
+    },
+    /**
+     * Style definitions to be attributed to the label container
+     * @type {Array|String|Object}
+     */
+    labelStyle: {
+      type: [Array,String,Object],
+    },
+    /**
+     * Apply a rectangle aspect to the FAB
+     * @type {Boolean}
+     */
+    square: {
+      type: Boolean,
+    },
+    /**
+     * Put component in disabled mode
+     * @type {Boolean}
+     */
+    disable: {
+      type: Boolean,
+    },
+    /**
+     * Controls state of fab actions (showing/hidden); Works best with v-model directive, otherwise use along listening to 'input' event
+     * @type {Boolean}
+     */
+    value: {
+      type: Boolean,
+    },
+    /**
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
+     * @type {String}
+     */
+    icon: {
+      type: String,
+    },
+    /**
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
+     * @type {String}
+     */
+    activeIcon: {
+      type: String,
+    },
+    /**
+     * Direction to expand Fab Actions to
+     * @type {'up'|'right'|'down'|'left'}
+     */
+    direction: {
+      type: String,
+    },
+    /**
+     * Direction to expand Fab Actions to
+     * @type {'up'|'right'|'down'|'left'}
+     */
+    'direction="up"': {
+      type: Boolean,
+    },
+    /**
+     * Direction to expand Fab Actions to
+     * @type {'up'|'right'|'down'|'left'}
+     */
+    'direction="right"': {
+      type: Boolean,
+    },
+    /**
+     * Direction to expand Fab Actions to
+     * @type {'up'|'right'|'down'|'left'}
+     */
+    'direction="down"': {
+      type: Boolean,
+    },
+    /**
+     * Direction to expand Fab Actions to
+     * @type {'up'|'right'|'down'|'left'}
+     */
+    'direction="left"': {
+      type: Boolean,
+    },
+    /**
+     * The side of the Fab where Fab Actions will expand (only when direction is 'up' or 'down')
+     * @type {'left'|'center'|'right'}
+     */
+    verticalActionsAlign: {
+      type: String,
+    },
+    /**
+     * The side of the Fab where Fab Actions will expand (only when direction is 'up' or 'down')
+     * @type {'left'|'center'|'right'}
+     */
+    'verticalActionsAlign="left"': {
+      type: Boolean,
+    },
+    /**
+     * The side of the Fab where Fab Actions will expand (only when direction is 'up' or 'down')
+     * @type {'left'|'center'|'right'}
+     */
+    'verticalActionsAlign="center"': {
+      type: Boolean,
+    },
+    /**
+     * The side of the Fab where Fab Actions will expand (only when direction is 'up' or 'down')
+     * @type {'left'|'center'|'right'}
+     */
+    'verticalActionsAlign="right"': {
+      type: Boolean,
+    },
+    /**
+     * By default, Fab Actions are hidden when user navigates to another route and this prop disables this behavior
+     * @type {Boolean}
+     */
+    persistent: {
       type: Boolean,
     }
   }

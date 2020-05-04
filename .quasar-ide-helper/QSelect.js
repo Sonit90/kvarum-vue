@@ -8,7 +8,19 @@ export default {
   name: 'QSelect',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the virtual scroll occurs
+     * @param {{index : Number, from : Number, to : Number, direction : 'increase'|'decrease', ref : Object}} details Object of properties on the new scroll position 
+     */      
+    '@virtual-scroll': function (details) {},
+
+    /**
+     * When using the 'clearable' property, this event is emitted when the clear icon is clicked
+     * @param {*} value The previous value before clearing it 
+     */      
+    '@clear': function (value) {},
+
+    /**
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -45,8 +57,62 @@ export default {
 
      */      
     '@filter-abort': function () {},
+
     /**
-     * Does field has validation errors?
+     * Emitted when the select options menu or dialog is shown.
+     * @param {Object} evt JS event object 
+     */      
+    '@popup-show': function (evt) {},
+
+    /**
+     * Emitted when the select options menu or dialog is hidden.
+     * @param {Object} evt JS event object 
+     */      
+    '@popup-hide': function (evt) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms; If not specified, it takes the value of 'for' prop, if it exists
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
+     * Make virtual list work in horizontal mode
+     * @type {Boolean}
+     */
+    virtualScrollHorizontal: {
+      type: Boolean,
+    },
+    /**
+     * Number of options to render in the virtual list
+     * @type {Number}
+     */
+    virtualScrollSliceSize: {
+      type: Number,
+    },
+    /**
+     * Default size in pixels (height if vertical, width if horizontal) of an option; This value is used for rendering the initial list; Try to use a value close to the minimum size of an item
+     * @type {Number}
+     */
+    virtualScrollItemSize: {
+      type: Number,
+    },
+    /**
+     * Size in pixels (height if vertical, width if horizontal) of the sticky part (if using one) at the start of the list; A correct value will improve scroll precision
+     * @type {Number}
+     */
+    virtualScrollStickySizeStart: {
+      type: Number,
+    },
+    /**
+     * Size in pixels (height if vertical, width if horizontal) of the sticky part (if using one) at the end of the list; A correct value will improve scroll precision
+     * @type {Number}
+     */
+    virtualScrollStickySizeEnd: {
+      type: Number,
+    },
+    /**
+     * Does field have validation errors?
      * @type {Boolean}
      */
     error: {
@@ -120,6 +186,13 @@ export default {
      * @type {String}
      */
     suffix: {
+      type: String,
+    },
+    /**
+     * Color name for the label from the Quasar Color Palette; Overrides the 'color' prop; The difference from 'color' prop is that the label will always have this color, even when field is not focused
+     * @type {String}
+     */
+    labelColor: {
       type: String,
     },
     /**
@@ -200,7 +273,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Does not reserves space for hint/error/counter anymore when these are not used; as a result, it also disables the animation for those
+     * Does not reserves space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content
      * @type {Boolean}
      */
     hideBottomSpace: {
@@ -235,10 +308,10 @@ export default {
       type: Boolean,
     },
     /**
-     * Align content to match QItem
+     * Match inner content alignment to that of QItem
      * @type {Boolean}
      */
-    itemsAligned: {
+    itemAligned: {
       type: Boolean,
     },
     /**
@@ -261,6 +334,13 @@ export default {
      */
     autofocus: {
       type: Boolean,
+    },
+    /**
+     * Used to specify the 'id' of the control and also the 'for' attribute of the label that wraps it; If no 'name' prop is specified, then it is used for this attribute as well
+     * @type {String}
+     */
+    for: {
+      type: String,
     },
     /**
      * Model of the component; Must be Array if using 'multiple' prop; Either use this property (along with a listener for 'input' event) OR use v-model directive
@@ -292,28 +372,28 @@ export default {
       type: Boolean,
     },
     /**
-     * Available options that the user can select from
+     * Available options that the user can select from. For best performance freeze the list of options.
      * @type {Array}
      */
     options: {
       type: Array,
     },
     /**
-     * Property of option which holds the 'value'
+     * Property of option which holds the 'value'; If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {Function|String}
      */
     optionValue: {
       type: [Function,String],
     },
     /**
-     * Property of option which holds the 'label'
+     * Property of option which holds the 'label'; If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {Function|String}
      */
     optionLabel: {
       type: [Function,String],
     },
     /**
-     * Property of option which tells it's disabled; The value of the property must be a Boolean
+     * Property of option which tells it's disabled; The value of the property must be a Boolean; If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {Function|String}
      */
     optionDisable: {
@@ -334,7 +414,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     dropdownIcon: {
@@ -362,11 +442,18 @@ export default {
       type: Boolean,
     },
     /**
-     * CSS class name for options that are active/selected
+     * CSS class name for options that are active/selected; Set it to an empty string to stop applying the default (which is text-* where * is the 'color' prop value)
      * @type {String}
      */
     optionsSelectedClass: {
       type: String,
+    },
+    /**
+     * Force use of textContent instead of innerHTML to render options; Use it when the options might be unsafe (from user input); Does NOT apply when using 'option' slot!
+     * @type {Boolean}
+     */
+    optionsSanitize: {
+      type: Boolean,
     },
     /**
      * Expanded menu will cover the component (will not work along with 'use-input' prop for obvious reasons)
@@ -376,11 +463,158 @@ export default {
       type: Boolean,
     },
     /**
-     * Force use of textContent instead of innerHTML to render options; Use it when the options might be unsafe (from user input); Does NOT applies when using 'option' slot!
+     * Allow the options list to be narrower than the field (only in menu mode)
      * @type {Boolean}
      */
-    optionsSanitize: {
+    menuShrink: {
       type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    menuAnchor: {
+      type: String,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="top left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="top middle"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="top right"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="center left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="center middle"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="center right"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="bottom left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="bottom center"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the starting position or anchor point of the options list relative to the field (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuAnchor="bottom right"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    menuSelf: {
+      type: String,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="top left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="top middle"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="top right"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="center left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="center middle"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="center right"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="bottom left"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="bottom center"': {
+      type: Boolean,
+    },
+    /**
+     * Two values setting the options list's own position relative to its target (only in menu mode)
+     * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom center'|'bottom right'}
+     */
+    'menuSelf="bottom right"': {
+      type: Boolean,
+    },
+    /**
+     * An array of two numbers to offset the options list horizontally and vertically in pixels (only in menu mode)
+     * @type {Array}
+     */
+    menuOffset: {
+      type: Array,
     },
     /**
      * Class definitions to be attributed to the popup content
@@ -428,25 +662,25 @@ export default {
      * Enables creation of new values and defines behavior when a new value is added: 'add' means it adds the value (even if possible duplicate), 'add-unique' adds only unique values, and 'toggle' adds or removes the value (based on if it exists or not already); When using this prop then listening for @new-value becomes optional (only to override the behavior defined by 'new-value-mode')
      * @type {'add'|'add-unique'|'toggle'}
      */
-    'newValueMode="add" _': {
-      type: String,
+    'newValueMode="add"': {
+      type: Boolean,
     },
     /**
      * Enables creation of new values and defines behavior when a new value is added: 'add' means it adds the value (even if possible duplicate), 'add-unique' adds only unique values, and 'toggle' adds or removes the value (based on if it exists or not already); When using this prop then listening for @new-value becomes optional (only to override the behavior defined by 'new-value-mode')
      * @type {'add'|'add-unique'|'toggle'}
      */
-    'newValueMode="addUnique" _': {
-      type: String,
+    'newValueMode="addUnique"': {
+      type: Boolean,
     },
     /**
      * Enables creation of new values and defines behavior when a new value is added: 'add' means it adds the value (even if possible duplicate), 'add-unique' adds only unique values, and 'toggle' adds or removes the value (based on if it exists or not already); When using this prop then listening for @new-value becomes optional (only to override the behavior defined by 'new-value-mode')
      * @type {'add'|'add-unique'|'toggle'}
      */
-    'newValueMode="toggle" _': {
-      type: String,
+    'newValueMode="toggle"': {
+      type: Boolean,
     },
     /**
-     * Try to map labels of model from 'options' Array; has a small performance penalty
+     * Try to map labels of model from 'options' Array; has a small performance penalty; If you are using emit-value you will probably need to use map-options to display the label text in the select field rather than the value;  Refer to the 'Affecting model' section above
      * @type {Boolean}
      */
     mapOptions: {
@@ -467,18 +701,67 @@ export default {
       type: [Number,String],
     },
     /**
-     * Transition when showing the menu; One of Quasar's embedded transitions; Works only if "options-cover" is not used
+     * Class definitions to be attributed to the underlying input tag
+     * @type {Array|String|Object}
+     */
+    inputClass: {
+      type: [Array,String,Object],
+    },
+    /**
+     * Style definitions to be attributed to the underlying input tag
+     * @type {Array|String|Object}
+     */
+    inputStyle: {
+      type: [Array,String,Object],
+    },
+    /**
+     * Tabindex HTML attribute value
+     * @type {Number|String}
+     */
+    tabindex: {
+      type: [Number,String],
+    },
+    /**
+     * Transition when showing the menu/dialog; One of Quasar's embedded transitions
      * @type {String}
      */
     transitionShow: {
       type: String,
     },
     /**
-     * Transition when hiding the menu; One of Quasar's embedded transitions; Works only if "options-cover" is not used
+     * Transition when hiding the menu/dialog; One of Quasar's embedded transitions
      * @type {String}
      */
     transitionHide: {
       type: String,
+    },
+    /**
+     * Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles
+     * @type {'default'|'menu'|'dialog'}
+     */
+    behavior: {
+      type: String,
+    },
+    /**
+     * Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles
+     * @type {'default'|'menu'|'dialog'}
+     */
+    'behavior="default"': {
+      type: Boolean,
+    },
+    /**
+     * Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles
+     * @type {'default'|'menu'|'dialog'}
+     */
+    'behavior="menu"': {
+      type: Boolean,
+    },
+    /**
+     * Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles
+     * @type {'default'|'menu'|'dialog'}
+     */
+    'behavior="dialog"': {
+      type: Boolean,
     }
   }
 }

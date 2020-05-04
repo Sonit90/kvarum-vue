@@ -143,36 +143,36 @@ export default {
      * Stick dialog to one of the sides (top, right, bottom or left)
      * @type {'standard'|'top'|'right'|'bottom'|'left'}
      */
-    'position="standard" _': {
-      type: String,
+    'position="standard"': {
+      type: Boolean,
     },
     /**
      * Stick dialog to one of the sides (top, right, bottom or left)
      * @type {'standard'|'top'|'right'|'bottom'|'left'}
      */
-    'position="top" _': {
-      type: String,
+    'position="top"': {
+      type: Boolean,
     },
     /**
      * Stick dialog to one of the sides (top, right, bottom or left)
      * @type {'standard'|'top'|'right'|'bottom'|'left'}
      */
-    'position="right" _': {
-      type: String,
+    'position="right"': {
+      type: Boolean,
     },
     /**
      * Stick dialog to one of the sides (top, right, bottom or left)
      * @type {'standard'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottom" _': {
-      type: String,
+    'position="bottom"': {
+      type: Boolean,
     },
     /**
      * Stick dialog to one of the sides (top, right, bottom or left)
      * @type {'standard'|'top'|'right'|'bottom'|'left'}
      */
-    'position="left" _': {
-      type: String,
+    'position="left"': {
+      type: Boolean,
     },
     /**
      * One of Quasar's embedded transitions

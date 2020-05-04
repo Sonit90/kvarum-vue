@@ -1,4 +1,30 @@
 {
-  "ide-helper": {},
-  "qdatetimepicker": {}
+  "ide-helper": {
+    "__internal": {
+      "lastQuasarVersion": "1.9.3",
+      "lastIdeHelperVersion": "1.0.0-alpha.3"
+    }
+  },
+  "qdatetimepicker": {},
+  "@quasar/icon-genie": {
+    "minify_dev": "pngquant",
+    "minify_build": "optipng",
+    "cordova": {
+      "background_color": "#000000",
+      "splashscreen_type": "overlay"
+    },
+    "build_always": false,
+    "__internal": {
+      "dev": {
+        "spa": {
+          "iconHash": "14c775fe1169fad79c71c6c9328cc933"
+        }
+      },
+      "build": {
+        "spa": {
+          "iconHash": "14c775fe1169fad79c71c6c9328cc933"
+        }
+      }
+    }
+  }
 }

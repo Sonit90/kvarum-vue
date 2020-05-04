@@ -36,6 +36,18 @@ export default {
      * @param {Object} evt JS event object 
      */      
     '@before-hide': function (evt) {},
+
+    /**
+     * Emitted when component show animation is finished
+
+     */      
+    '@after-show': function () {},
+
+    /**
+     * Emitted when component hide animation is finished
+
+     */      
+    '@after-hide': function () {},
     /**
      * Equivalent to Vue Router <router-link> 'to' property
      * @type {String|Object}
@@ -93,17 +105,24 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     expandIcon: {
+      type: String,
+    },
+    /**
+     * Expand icon name (following Quasar convention) for when QExpansionItem is expanded; When used, it also disables the rotation animation of the expand icon; Make sure you have the icon library installed unless you are using 'img:' prefix
+     * @type {String}
+     */
+    expandedIcon: {
       type: String,
     },
     /**
@@ -184,7 +203,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Puts expansion item into open state on initial render; Overriden by v-model if used
+     * Puts expansion item into open state on initial render; Overridden by v-model if used
      * @type {Boolean}
      */
     defaultOpened: {

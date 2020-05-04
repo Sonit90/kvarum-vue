@@ -8,7 +8,7 @@ export default {
   name: 'QSlider',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -18,6 +18,13 @@ export default {
      * @param {*} value New model value 
      */      
     '@change': function (value) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Model of the component (must be between min/max); Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {Number}
@@ -47,6 +54,13 @@ export default {
       type: Number,
     },
     /**
+     * Work in reverse (changes horizontal direction)
+     * @type {Boolean}
+     */
+    reverse: {
+      type: Boolean,
+    },
+    /**
      * Color name for component from the Quasar Color Palette
      * @type {String}
      */
@@ -65,6 +79,13 @@ export default {
      * @type {String}
      */
     labelColor: {
+      type: String,
+    },
+    /**
+     * Color name for component from the Quasar Color Palette
+     * @type {String}
+     */
+    labelTextColor: {
       type: String,
     },
     /**
@@ -94,6 +115,13 @@ export default {
      */
     snap: {
       type: Boolean,
+    },
+    /**
+     * Set custom thumb svg path
+     * @type {String}
+     */
+    thumbPath: {
+      type: String,
     },
     /**
      * Notify the component that the background is a dark color

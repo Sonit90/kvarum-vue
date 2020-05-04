@@ -8,6 +8,13 @@ export default {
   name: 'QBtn',
   props: {
     /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * Configure material ripple (disable it by setting it to 'false' or supply a config object)
      * @type {Boolean|Object}
      */
@@ -25,29 +32,29 @@ export default {
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="a" _': {
-      type: String,
+    'type="a"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="submit" _': {
-      type: String,
+    'type="submit"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="button" _': {
-      type: String,
+    'type="button"': {
+      type: Boolean,
     },
     /**
      * Define the button HTML DOM type
      * @type {'a'|'submit'|'button'|'reset'}
      */
-    'type="reset" _': {
-      type: String,
+    'type="reset"': {
+      type: Boolean,
     },
     /**
      * Equivalent to Vue Router <router-link> 'to' property
@@ -71,25 +78,18 @@ export default {
       type: [String,Number],
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     iconRight: {
       type: String,
-    },
-    /**
-     * Makes a circle shaped button
-     * @type {Boolean}
-     */
-    round: {
-      type: Boolean,
     },
     /**
      * Use 'outline' design
@@ -134,13 +134,6 @@ export default {
       type: Boolean,
     },
     /**
-     * Button size name or a CSS unit including unit name
-     * @type {String}
-     */
-    size: {
-      type: String,
-    },
-    /**
      * Makes button size and shape to fit a Floating Action Button
      * @type {Boolean}
      */
@@ -162,7 +155,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -198,45 +191,52 @@ export default {
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
     align: {
       type: String,
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
-    'align="left" _': {
-      type: String,
+    'align="left"': {
+      type: Boolean,
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
-    'align="right" _': {
-      type: String,
+    'align="right"': {
+      type: Boolean,
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
-    'align="center" _': {
-      type: String,
+    'align="center"': {
+      type: Boolean,
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
-    'align="around" _': {
-      type: String,
+    'align="around"': {
+      type: Boolean,
     },
     /**
      * Label or content alignment
-     * @type {'left'|'right'|'center'|'around'|'between'}
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
      */
-    'align="between" _': {
-      type: String,
+    'align="between"': {
+      type: Boolean,
+    },
+    /**
+     * Label or content alignment
+     * @type {'left'|'right'|'center'|'around'|'between'|'evenly'}
+     */
+    'align="evenly"': {
+      type: Boolean,
     },
     /**
      * Stack icon and label vertically instead of on same line (like it is by default)
@@ -253,7 +253,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Put button into loading state (displays a QSpinner -- can be overriden by using a 'loading' slot)
+     * Put button into loading state (displays a QSpinner -- can be overridden by using a 'loading' slot)
      * @type {Boolean}
      */
     loading: {
@@ -264,6 +264,13 @@ export default {
      * @type {Boolean}
      */
     disable: {
+      type: Boolean,
+    },
+    /**
+     * Makes a circle shaped button
+     * @type {Boolean}
+     */
+    round: {
       type: Boolean,
     },
     /**

@@ -1,0 +1,76 @@
+import {default as apiClient} from 'src/services/axios'
+
+//import { LocalStorage } from 'quasar'
+
+// let apiClient
+//
+// apiClient = axios.create({
+//   baseURL: '/api',
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json'
+//   },
+//   timeout: 10000,
+//   withCredentials: true
+// })
+export default {
+  getAdminUsers (page, fetchCount, filter, sortBy, descending) {
+  console.log('filter inside', filter)
+  let filterString = ''
+
+  Object.keys(filter).forEach(key => {
+      console.log(key)
+      console.log(typeof (filter[key]))
+      if (filter[key] !== '' && filter[key] !== null) {
+        filterString += `&${key}=` + filter[key]
+      }
+    }
+  )
+
+  let sort = ''
+  if (descending) {
+    sort = '-id'
+  }
+
+  let params = { page, sort }
+
+  let request = '/user/?' + Object.keys(params).map(key => key + '=' + params[key]).join('&')
+
+  if (filterString !== '') {
+    request += filterString
+  }
+
+  if (fetchCount !== '') {
+    request += `&per-page=${fetchCount}`
+  }
+  request += '&expand=agency,roles,profile,auth_key'
+
+  console.log(request)
+
+  return apiClient.get(request)
+},
+  deleteUser(id){
+    return apiClient.post('/user/delete?id='+id)
+  },
+  restoreUser(id){
+    return apiClient.post('/user/restore?id='+id)
+  },
+  getRoles () {
+    console.log(apiClient.defaults.headers.common['Authorization'])
+    console.log('getting roles in AdminService')
+    return apiClient.get('/user/roles')
+  },
+  getPermissions(){
+    return apiClient.get('/user/permissions')
+  },
+  getRole (name) {
+    console.log('getting roles in EventService')
+    return apiClient.get('/user/role?name='+name)
+  },
+  createUser (name, surname, email, password, agency, type, roles) {
+    return apiClient.post('/user/create/', { name, surname, email, password, agency, type, roles })
+  },
+  editUser(user){
+    return apiClient.post('/user/update/?id='+user.id, user)
+  }
+}

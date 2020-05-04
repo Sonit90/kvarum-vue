@@ -8,7 +8,7 @@ export default {
   name: 'QTabPanels',
   props: {
     /**
-     * Emitted when component's model changes (current panel name); Is also used by v-model
+     * Emitted when the component changes the model; This event _isn't_ fired if the model is changed externally; Is also used by v-model
      * @param {String|Number} value New current panel name 
      */      
     '@input': function (value) {},
@@ -58,6 +58,13 @@ export default {
      * @type {Boolean}
      */
     swipeable: {
+      type: Boolean,
+    },
+    /**
+     * Default transitions and swipe actions will be on the vertical axis
+     * @type {Boolean}
+     */
+    vertical: {
       type: Boolean,
     },
     /**

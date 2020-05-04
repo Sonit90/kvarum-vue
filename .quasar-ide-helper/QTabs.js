@@ -8,7 +8,7 @@ export default {
   name: 'QTabs',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -37,29 +37,29 @@ export default {
      * Horizontal alignment the tabs within the tabs container
      * @type {'left'|'center'|'right'|'justify'}
      */
-    'align="left" _': {
-      type: String,
+    'align="left"': {
+      type: Boolean,
     },
     /**
      * Horizontal alignment the tabs within the tabs container
      * @type {'left'|'center'|'right'|'justify'}
      */
-    'align="center" _': {
-      type: String,
+    'align="center"': {
+      type: Boolean,
     },
     /**
      * Horizontal alignment the tabs within the tabs container
      * @type {'left'|'center'|'right'|'justify'}
      */
-    'align="right" _': {
-      type: String,
+    'align="right"': {
+      type: Boolean,
     },
     /**
      * Horizontal alignment the tabs within the tabs container
      * @type {'left'|'center'|'right'|'justify'}
      */
-    'align="justify" _': {
-      type: String,
+    'align="justify"': {
+      type: Boolean,
     },
     /**
      * Breakpoint (in pixels) of tabs container width at which the tabs automatically turn to a justify alignment

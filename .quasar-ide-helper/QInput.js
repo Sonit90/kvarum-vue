@@ -8,7 +8,13 @@ export default {
   name: 'QInput',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * When using the 'clearable' property, this event is emitted when the clear icon is clicked
+     * @param {*} value The previous value before clearing it 
+     */      
+    '@clear': function (value) {},
+
+    /**
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {String|Number} value New model value 
      */      
     '@input': function (value) {},
@@ -24,6 +30,13 @@ export default {
      * @param {Object} evt JS event object 
      */      
     '@blur': function (evt) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms; If not specified, it takes the value of 'for' prop, if it exists
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Custom mask or one of the predefined mask names
      * @type {String}
@@ -53,7 +66,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Does field has validation errors?
+     * Does field have validation errors?
      * @type {Boolean}
      */
     error: {
@@ -127,6 +140,13 @@ export default {
      * @type {String}
      */
     suffix: {
+      type: String,
+    },
+    /**
+     * Color name for the label from the Quasar Color Palette; Overrides the 'color' prop; The difference from 'color' prop is that the label will always have this color, even when field is not focused
+     * @type {String}
+     */
+    labelColor: {
       type: String,
     },
     /**
@@ -207,7 +227,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Does not reserves space for hint/error/counter anymore when these are not used; as a result, it also disables the animation for those
+     * Does not reserves space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content
      * @type {Boolean}
      */
     hideBottomSpace: {
@@ -242,10 +262,10 @@ export default {
       type: Boolean,
     },
     /**
-     * Align content to match QItem
+     * Match inner content alignment to that of QItem
      * @type {Boolean}
      */
-    itemsAligned: {
+    itemAligned: {
       type: Boolean,
     },
     /**
@@ -270,6 +290,13 @@ export default {
       type: Boolean,
     },
     /**
+     * Used to specify the 'id' of the control and also the 'for' attribute of the label that wraps it; If no 'name' prop is specified, then it is used for this attribute as well
+     * @type {String}
+     */
+    for: {
+      type: String,
+    },
+    /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {String|Number}
      */
@@ -288,78 +315,78 @@ export default {
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="text" _': {
-      type: String,
+    'type="text"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="password" _': {
-      type: String,
+    'type="password"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="textarea" _': {
-      type: String,
+    'type="textarea"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="email" _': {
-      type: String,
+    'type="email"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="search" _': {
-      type: String,
+    'type="search"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="tel" _': {
-      type: String,
+    'type="tel"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="file" _': {
-      type: String,
+    'type="file"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="number" _': {
-      type: String,
+    'type="number"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="url" _': {
-      type: String,
+    'type="url"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="time" _': {
-      type: String,
+    'type="time"': {
+      type: Boolean,
     },
     /**
      * Input type
      * @type {'text'|'password'|'textarea'|'email'|'search'|'tel'|'file'|'number'|'url'|'time'|'date'}
      */
-    'type="date" _': {
-      type: String,
+    'type="date"': {
+      type: Boolean,
     },
     /**
      * Debounce amount (in milliseconds) when updating model

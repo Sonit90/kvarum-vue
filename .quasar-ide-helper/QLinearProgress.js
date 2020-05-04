@@ -8,6 +8,13 @@ export default {
   name: 'QLinearProgress',
   props: {
     /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * Progress value (0.0 < x < 1.0)
      * @type {Number}
      */

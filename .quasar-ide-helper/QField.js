@@ -8,7 +8,30 @@ export default {
   name: 'QField',
   props: {
     /**
-     * Does field has validation errors?
+     * When using the 'clearable' property, this event is emitted when the clear icon is clicked
+     * @param {*} value The previous value before clearing it 
+     */      
+    '@clear': function (value) {},
+
+    /**
+     * Emitted when the model changes, only when used with 'clearable' or the 'control' scoped slot.
+     * @param {*} value New model value 
+     */      
+    '@input': function (value) {},
+
+    /**
+     * Emitted when component gets focused
+     * @param {Object} evt JS event object 
+     */      
+    '@focus': function (evt) {},
+
+    /**
+     * Emitted when component loses focus
+     * @param {Object} evt JS event object 
+     */      
+    '@blur': function (evt) {},
+    /**
+     * Does field have validation errors?
      * @type {Boolean}
      */
     error: {
@@ -82,6 +105,13 @@ export default {
      * @type {String}
      */
     suffix: {
+      type: String,
+    },
+    /**
+     * Color name for the label from the Quasar Color Palette; Overrides the 'color' prop; The difference from 'color' prop is that the label will always have this color, even when field is not focused
+     * @type {String}
+     */
+    labelColor: {
       type: String,
     },
     /**
@@ -162,7 +192,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Does not reserves space for hint/error/counter anymore when these are not used; as a result, it also disables the animation for those
+     * Does not reserves space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content
      * @type {Boolean}
      */
     hideBottomSpace: {
@@ -197,10 +227,10 @@ export default {
       type: Boolean,
     },
     /**
-     * Align content to match QItem
+     * Match inner content alignment to that of QItem
      * @type {Boolean}
      */
-    itemsAligned: {
+    itemAligned: {
       type: Boolean,
     },
     /**
@@ -223,6 +253,20 @@ export default {
      */
     autofocus: {
       type: Boolean,
+    },
+    /**
+     * Used to specify the 'id' of the control and also the 'for' attribute of the label that wraps it; If no 'name' prop is specified, then it is used for this attribute as well
+     * @type {String}
+     */
+    for: {
+      type: String,
+    },
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms; If not specified, it takes the value of 'for' prop, if it exists
+     * @type {String}
+     */
+    name: {
+      type: String,
     },
     /**
      * Specify a max length of model

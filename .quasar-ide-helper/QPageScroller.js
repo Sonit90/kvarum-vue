@@ -18,57 +18,57 @@ export default {
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="topRight" _': {
-      type: String,
+    'position="topRight"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="topLeft" _': {
-      type: String,
+    'position="topLeft"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottomRight" _': {
-      type: String,
+    'position="bottomRight"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottomLeft" _': {
-      type: String,
+    'position="bottomLeft"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="top" _': {
-      type: String,
+    'position="top"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="right" _': {
-      type: String,
+    'position="right"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottom" _': {
-      type: String,
+    'position="bottom"': {
+      type: Boolean,
     },
     /**
      * Page side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="left" _': {
-      type: String,
+    'position="left"': {
+      type: Boolean,
     },
     /**
      * An array of two numbers to offset the component horizontally and vertically in pixels
@@ -85,11 +85,18 @@ export default {
       type: Boolean,
     },
     /**
-     * Scroll offset (in pixels) from which point the component is shown on page
+     * Scroll offset (in pixels) from which point the component is shown on page; Measured from the top of the page (or from the bottom if in 'reverse' mode)
      * @type {Number}
      */
     scrollOffset: {
       type: Number,
+    },
+    /**
+     * Work in reverse (shows when scrolling to the top of the page and scrolls to bottom when triggered)
+     * @type {Boolean}
+     */
+    reverse: {
+      type: Boolean,
     },
     /**
      * Duration (in milliseconds) of the scrolling until it reaches its target

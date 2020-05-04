@@ -8,10 +8,18 @@ export default {
   name: 'QTime',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {String} value New model value 
+     * @param {{year : Number, month : Number, day : Number, hour : Number, minute : Number, second : Number, millisecond : Number, changed : Boolean}} details Object of properties on the new model 
      */      
-    '@input': function (value) {},
+    '@input': function (value,details) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Time of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {String}
@@ -52,15 +60,15 @@ export default {
      * Specify calendar type
      * @type {'gregorian'|'persian'}
      */
-    'calendar="gregorian" _': {
-      type: String,
+    'calendar="gregorian"': {
+      type: Boolean,
     },
     /**
      * Specify calendar type
      * @type {'gregorian'|'persian'}
      */
-    'calendar="persian" _': {
-      type: String,
+    'calendar="persian"': {
+      type: Boolean,
     },
     /**
      * Color name for component from the Quasar Color Palette
@@ -70,7 +78,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -81,6 +89,27 @@ export default {
      * @type {Boolean}
      */
     dark: {
+      type: Boolean,
+    },
+    /**
+     * Removes border-radius so borders are squared
+     * @type {Boolean}
+     */
+    square: {
+      type: Boolean,
+    },
+    /**
+     * Applies a 'flat' design (no default shadow)
+     * @type {Boolean}
+     */
+    flat: {
+      type: Boolean,
+    },
+    /**
+     * Applies a default border to the component
+     * @type {Boolean}
+     */
+    bordered: {
       type: Boolean,
     },
     /**
@@ -105,7 +134,14 @@ export default {
       type: Boolean,
     },
     /**
-     * Optionally configure what time is the user allowed to set; Overriden by 'hour-options', 'minute-options' and 'second-options' if those are set
+     * The default date to use (in YYYY/MM/DD format) when model is unfilled (undefined or null)
+     * @type {String}
+     */
+    defaultDate: {
+      type: String,
+    },
+    /**
+     * Optionally configure what time is the user allowed to set; Overridden by 'hour-options', 'minute-options' and 'second-options' if those are set; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     options: {

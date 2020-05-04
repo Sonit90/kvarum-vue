@@ -8,10 +8,24 @@ export default {
   name: 'QToggle',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
     /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {*|Array}
@@ -36,6 +50,19 @@ export default {
      * @type {*}
      */
     falseValue: {
+    },
+    /**
+     * What model value should be considered as 'indeterminate'?
+     * @type {*}
+     */
+    indeterminateValue: {
+    },
+    /**
+     * When user clicks/taps on the component, should we toggle through the indeterminate state too?
+     * @type {Boolean}
+     */
+    toggleIndeterminate: {
+      type: Boolean,
     },
     /**
      * Label to display along the component (or use the default slot instead of this prop)
@@ -94,7 +121,7 @@ export default {
       type: [Number,String],
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
@@ -112,6 +139,20 @@ export default {
      * @type {String}
      */
     uncheckedIcon: {
+      type: String,
+    },
+    /**
+     * The icon to be used when the model is indeterminate
+     * @type {String}
+     */
+    indeterminateIcon: {
+      type: String,
+    },
+    /**
+     * Override default icon color (for truthy state only); Color name for component from the Quasar Color Palette
+     * @type {String}
+     */
+    iconColor: {
       type: String,
     }
   }

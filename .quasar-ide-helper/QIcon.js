@@ -8,6 +8,20 @@ export default {
   name: 'QIcon',
   props: {
     /**
+     * HTML tag to render, unless no icon is supplied or it's an svg icon
+     * @type {String}
+     */
+    tag: {
+      type: String,
+    },
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * Name of the icon, following Quasar convention
      * @type {String}
      */
@@ -19,13 +33,6 @@ export default {
      * @type {String}
      */
     color: {
-      type: String,
-    },
-    /**
-     * Size in CSS units, including unit name
-     * @type {String}
-     */
-    size: {
       type: String,
     },
     /**

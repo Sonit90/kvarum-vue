@@ -8,7 +8,7 @@ export default {
   name: 'QPopupProxy',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -37,11 +37,18 @@ export default {
      */      
     '@hide': function (evt) {},
     /**
-     * Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) it attaches the events to the specified DOM element (if it exists)
-     * @type {Boolean|'(CSS selector)'}
+     * Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)
+     * @type {Boolean|'(CSS selector)'|'(DOM Element)'}
      */
     target: {
-      type: [Boolean,String],
+      type: [Boolean,String,Element],
+    },
+    /**
+     * Skips attaching events to the target DOM element (that trigger the element to get shown)
+     * @type {Boolean}
+     */
+    noParentEvent: {
+      type: Boolean,
     },
     /**
      * Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)
@@ -58,7 +65,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Breakpoint (in pixels) of window width from where a Menu will get to be used instead of a Dialog
+     * Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog
      * @type {Number|String}
      */
     breakpoint: {

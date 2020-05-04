@@ -15,7 +15,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Override default CSS style applied to the component (sets minHeight); Function(offset: Number) => CSS props/value: Object
+     * Override default CSS style applied to the component (sets minHeight); Function(offset: Number) => CSS props/value: Object; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     styleFn: {

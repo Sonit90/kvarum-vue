@@ -8,7 +8,7 @@ export default {
   name: 'QAvatar',
   props: {
     /**
-     * Size in CSS units, including unit name
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
      * @type {String}
      */
     size: {
@@ -29,14 +29,14 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {

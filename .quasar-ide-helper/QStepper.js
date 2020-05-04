@@ -8,7 +8,7 @@ export default {
   name: 'QStepper',
   props: {
     /**
-     * Emitted when component's model changes (current panel name); Is also used by v-model
+     * Emitted when the component changes the model; This event _isn't_ fired if the model is changed externally; Is also used by v-model
      * @param {String|Number} value New current panel name 
      */      
     '@input': function (value) {},
@@ -61,6 +61,13 @@ export default {
       type: Boolean,
     },
     /**
+     * Put Stepper in vertical mode (instead of horizontal by default)
+     * @type {Boolean}
+     */
+    vertical: {
+      type: Boolean,
+    },
+    /**
      * One of Quasar's embedded transitions (has effect only if 'animated' prop is set)
      * @type {String}
      */
@@ -96,14 +103,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Put Stepper in vertical mode (instead of horizontal by default)
-     * @type {Boolean}
-     */
-    vertical: {
-      type: Boolean,
-    },
-    /**
-     * Use alternative labels (applies only to horizontal stepper)
+     * Use alternative labels - stacks the icon on top of the label (applies only to horizontal stepper)
      * @type {Boolean}
      */
     alternativeLabels: {
@@ -124,7 +124,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     inactiveIcon: {
@@ -138,7 +138,7 @@ export default {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     doneIcon: {
@@ -152,7 +152,7 @@ export default {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     activeIcon: {
@@ -166,7 +166,7 @@ export default {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     errorIcon: {

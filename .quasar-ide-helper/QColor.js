@@ -8,7 +8,7 @@ export default {
   name: 'QColor',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -19,6 +19,13 @@ export default {
      */      
     '@change': function (value) {},
     /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {String}
      */
@@ -26,7 +33,7 @@ export default {
       type: String,
     },
     /**
-     * The default value to show when the model doesn't has one
+     * The default value to show when the model doesn't have one
      * @type {String}
      */
     defaultValue: {
@@ -43,22 +50,22 @@ export default {
      * The default view of the picker
      * @type {'spectrum'|'tune'|'palette'}
      */
-    'defaultView="spectrum" _': {
-      type: String,
+    'defaultView="spectrum"': {
+      type: Boolean,
     },
     /**
      * The default view of the picker
      * @type {'spectrum'|'tune'|'palette'}
      */
-    'defaultView="tune" _': {
-      type: String,
+    'defaultView="tune"': {
+      type: Boolean,
     },
     /**
      * The default view of the picker
      * @type {'spectrum'|'tune'|'palette'}
      */
-    'defaultView="palette" _': {
-      type: String,
+    'defaultView="palette"': {
+      type: Boolean,
     },
     /**
      * Forces a certain model format upon the model
@@ -71,36 +78,36 @@ export default {
      * Forces a certain model format upon the model
      * @type {'auto'|'hex'|'rgb'|'hexa'|'rgba'}
      */
-    'formatModel="auto" _': {
-      type: String,
+    'formatModel="auto"': {
+      type: Boolean,
     },
     /**
      * Forces a certain model format upon the model
      * @type {'auto'|'hex'|'rgb'|'hexa'|'rgba'}
      */
-    'formatModel="hex" _': {
-      type: String,
+    'formatModel="hex"': {
+      type: Boolean,
     },
     /**
      * Forces a certain model format upon the model
      * @type {'auto'|'hex'|'rgb'|'hexa'|'rgba'}
      */
-    'formatModel="rgb" _': {
-      type: String,
+    'formatModel="rgb"': {
+      type: Boolean,
     },
     /**
      * Forces a certain model format upon the model
      * @type {'auto'|'hex'|'rgb'|'hexa'|'rgba'}
      */
-    'formatModel="hexa" _': {
-      type: String,
+    'formatModel="hexa"': {
+      type: Boolean,
     },
     /**
      * Forces a certain model format upon the model
      * @type {'auto'|'hex'|'rgb'|'hexa'|'rgba'}
      */
-    'formatModel="rgba" _': {
-      type: String,
+    'formatModel="rgba"': {
+      type: Boolean,
     },
     /**
      * Use a custom palette of colors for the palette tab
@@ -108,6 +115,27 @@ export default {
      */
     palette: {
       type: Array,
+    },
+    /**
+     * Removes border-radius so borders are squared
+     * @type {Boolean}
+     */
+    square: {
+      type: Boolean,
+    },
+    /**
+     * Applies a 'flat' design (no default shadow)
+     * @type {Boolean}
+     */
+    flat: {
+      type: Boolean,
+    },
+    /**
+     * Applies a default border to the component
+     * @type {Boolean}
+     */
+    bordered: {
+      type: Boolean,
     },
     /**
      * Do not render header

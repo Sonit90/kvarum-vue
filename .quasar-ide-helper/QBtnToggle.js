@@ -8,10 +8,23 @@ export default {
   name: 'QBtnToggle',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
+
+    /**
+     * When using the 'clearable' property, this event is emitted when the already selected button is clicked
+
+     */      
+    '@clear': function () {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Configure material ripple (disable it by setting it to 'false' or supply a config object)
      * @type {Boolean|Object}
@@ -41,7 +54,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -55,7 +68,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     toggleTextColor: {
@@ -164,6 +177,13 @@ export default {
      * @type {Boolean}
      */
     stretch: {
+      type: Boolean,
+    },
+    /**
+     * Clears model on click of the already selected button
+     * @type {Boolean}
+     */
+    clearable: {
       type: Boolean,
     }
   }

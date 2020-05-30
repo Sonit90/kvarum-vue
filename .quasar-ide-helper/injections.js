@@ -6,6 +6,7 @@ import Vue from 'vue';
 * $q.appVisible
 * $q.bottomSheet
 * $q.cookies
+* $q.dark
 * $q.dialog
 * $q.loading
 * $q.loadingBar
@@ -42,18 +43,18 @@ Vue.prototype.$q = {
     /**
      * Request going into Fullscreen (with optional target)
      * @param {String} [target] Optional CSS selector of target to request Fullscreen on
-     * @returns  
+     * @returns {Promise<any>} A Promise with the outcome (true -> validation was a success, false -> invalid models detected)
      */
     request (target) {},
     /**
      * Request exiting out of Fullscreen mode
-     * @returns  
+     * @returns {Promise<any>} A Promise with the outcome (true -> validation was a success, false -> invalid models detected)
      */
     exit () {},
     /**
      * Request toggling Fullscreen mode (with optional target if requesting going into Fullscreen only)
      * @param {String} [target] Optional CSS selector of target to request Fullscreen on
-     * @returns  
+     * @returns {Promise<any>} A Promise with the outcome (true -> validation was a success, false -> invalid models detected)
      */
     toggle (target) {}
   },
@@ -82,7 +83,7 @@ Vue.prototype.$q = {
     /**
      * Get cookie
      * @param {String} name Cookie name
-     * @returns {String} Cookie value
+     * @returns {String|null} Cookie value; Returns null if cookie not found
      */
     get (name) {},
     /**
@@ -94,7 +95,7 @@ Vue.prototype.$q = {
      * Set cookie
      * @param {String} name Cookie name
      * @param {String} value Cookie value
-     * @param {{expires : Number|String, path : String, domain : String, httpOnly : Boolean, secure : Boolean}} [options] Cookie options
+     * @param {{expires : Number|String|Date, path : String, domain : String, sameSite : String, httpOnly : Boolean, secure : Boolean, other : String}} [options] Cookie options
      * @returns  
      */
     set (name,value,options) {},
@@ -107,7 +108,7 @@ Vue.prototype.$q = {
     /**
      * Remove a cookie
      * @param {String} name Cookie name
-     * @param {{path : String, domain : String, httpOnly : Boolean, secure : Boolean}} [options] Cookie options
+     * @param {{path : String, domain : String}} [options] Cookie options
      * @returns  
      */
     remove (name,options) {},
@@ -118,12 +119,37 @@ Vue.prototype.$q = {
      */
     parseSSR (ssrContext) {}
   },
+  dark : {
+  
+    /**
+     * Is Dark mode active? (reactive)
+     * @type {Boolean}
+     */
+    isActive: {},
+    /**
+     * Dark mode configuration (not status) (reactive)
+     * @type {'auto'|'(Boolean) true'|'(Boolean) false'}
+     */
+    mode: {},
+  
+    /**
+     * Set dark mode status
+     * @param {'(Boolean) true'|'(Boolean) false'|'auto'} status Dark mode status
+     * @returns  
+     */
+    set (status) {},
+    /**
+     * Toggle dark mode status
+     * @returns  
+     */
+    toggle () {}
+  },
   dialog : {
   
   
     /**
      * Creates an ad-hoc Dialog; Same as calling $q.dialog(...)
-     * @param {{class : String|Array|Object, style : String|Array|Object, title : String, message : String, html : Boolean, position : 'top'|'right'|'bottom'|'left'|'standard', prompt : {model : Array|String, type : String}, options : {type : 'radio'|'checkbox'|'toggle', model : Array, items : Array}, ok : String|{...props : *}|Boolean, cancel : String|{...props : *}|Boolean, stackButtons : Boolean, color : String, dark : Boolean, persistent : Boolean, no-esc-dismiss : Boolean, no-backdrop-dismiss : Boolean, no-route-dismiss : Boolean, seamless : Boolean, maximized : Boolean, full-width : Boolean, full-height : Boolean, transition-show : String, transition-hide : String, component : *, root : Object}} opts Dialog options
+     * @param {{class : String|Array|Object, style : String|Array|Object, title : String, message : String, html : Boolean, position : 'top'|'right'|'bottom'|'left'|'standard', prompt : {model : String, type : String, label : String, stack-label : Boolean, filled : Boolean, outlined : Boolean, standout : Boolean|String, isValid : Function}, options : {model : Array, type : 'radio'|'checkbox'|'toggle', items : Array, isValid : Function}, ok : String|{...props : *}|Boolean, cancel : String|{...props : *}|Boolean, focus : 'ok'|'cancel'|'none', stackButtons : Boolean, color : String, dark : Boolean, persistent : Boolean, no-esc-dismiss : Boolean, no-backdrop-dismiss : Boolean, no-route-dismiss : Boolean, seamless : Boolean, maximized : Boolean, full-width : Boolean, full-height : Boolean, transition-show : String, transition-hide : String, component : *, parent : Object, root : Object, ...props : *}} opts Dialog options
      * @returns {{onOk : Function, onCancel : Function, onDismiss : Function, hide : Function}} Chainable Object
      */
     create (opts) {}
@@ -138,7 +164,7 @@ Vue.prototype.$q = {
   
     /**
      * Activate and show
-     * @param {{delay : Number, message : String, sanitize : Boolean, spinnerSize : Number, spinnerColor : String, messageColor : String, backgroundColor : String, spinner : Component, customClass : String}} [opts] All props are optional
+     * @param {{delay : Number, message : String, sanitize : Boolean, spinnerSize : Number, spinnerColor : String, messageColor : String, backgroundColor : String, spinner : Component, customClass : String, ignoreDefaults : Boolean}} [opts] All props are optional
      * @returns  
      */
     show (opts) {},
@@ -198,13 +224,13 @@ Vue.prototype.$q = {
     /**
      * Get a storage item value
      * @param {String} key Entry key
-     * @returns {*} Storage item value
+     * @returns {Date|RegExp|Number|Boolean|Function|Object|Array|String|null} Storage item value
      */
     getItem (key) {},
     /**
      * Get the storage item value at specific index
      * @param {Number} index Entry index
-     * @returns {*} Storage item value
+     * @returns {Number|null} Storage item index
      */
     getIndex (index) {},
     /**
@@ -215,7 +241,7 @@ Vue.prototype.$q = {
     /**
      * Set item in storage
      * @param {String} key Entry key
-     * @param {*} value Entry value
+     * @param {Date|RegExp|Number|Boolean|Function|Object|Array|String|null} value Entry value
      * @returns  
      */
     set (key,value) {},
@@ -241,19 +267,31 @@ Vue.prototype.$q = {
   
     /**
      * Creates a notification; Same as calling $q.notify(...)
-     * @param {{color : String, textColor : String, message : String, html : Boolean, icon : String, avatar : String, position : 'top-left'|'top-right'|'bottom-left'|'bottom-right'|'top'|'bottom'|'left'|'right'|'center', classes : String, timeout : Number, actions : Array, onDismiss : Function, closeBtn : String, multiLine : Boolean}|String} opts For syntax, check quasar.conf options parameters
+     * @param {{type : String, color : String, textColor : String, message : String, caption : String, html : Boolean, icon : String, avatar : String, position : 'top-left'|'top-right'|'bottom-left'|'bottom-right'|'top'|'bottom'|'left'|'right'|'center', group : Boolean|String|Number, badgeColor : String, badgeTextColor : String, badgeStyle : Array|String|Object, badgeClass : Array|String|Object, progress : Boolean, progressClass : Array|String|Object, classes : String, timeout : Number, actions : Array, onDismiss : Function, closeBtn : Boolean|String, multiLine : Boolean, ignoreDefaults : Boolean}|String} opts Notification options
      * @returns {Function} Calling this function hides the notification
      */
     create (opts) {},
     /**
      * Merge options into the default ones
-     * @param {{color : String, textColor : String, message : String, html : Boolean, icon : String, avatar : String, position : 'top-left'|'top-right'|'bottom-left'|'bottom-right'|'top'|'bottom'|'left'|'right'|'center', classes : String, timeout : Number, actions : Array, onDismiss : Function, closeBtn : String, multiLine : Boolean}} opts For syntax, check quasar.conf options parameters
+     * @param {{type : String, color : String, textColor : String, message : String, caption : String, html : Boolean, icon : String, avatar : String, position : 'top-left'|'top-right'|'bottom-left'|'bottom-right'|'top'|'bottom'|'left'|'right'|'center', badgeColor : String, badgeTextColor : String, badgeStyle : Array|String|Object, badgeClass : Array|String|Object, progress : Boolean, progressClass : Array|String|Object, classes : String, timeout : Number, actions : Array, onDismiss : Function, closeBtn : Boolean|String, multiLine : Boolean}} opts Notification options
      * @returns  
      */
-    setDefaults (opts) {}
+    setDefaults (opts) {},
+    /**
+     * Register a new type of notification (or override an existing one)
+     * @param {String} typeName Name of the type (to be used as 'type' prop later on)
+     * @param {{type : String, color : String, textColor : String, message : String, caption : String, html : Boolean, icon : String, avatar : String, position : 'top-left'|'top-right'|'bottom-left'|'bottom-right'|'top'|'bottom'|'left'|'right'|'center', badgeColor : String, badgeTextColor : String, badgeStyle : Array|String|Object, badgeClass : Array|String|Object, progress : Boolean, progressClass : Array|String|Object, classes : String, timeout : Number, actions : Array, onDismiss : Function, closeBtn : Boolean|String, multiLine : Boolean}} typeOpts Notification options
+     * @returns  
+     */
+    registerType (typeName,typeOpts) {}
   },
   platform : {
   
+    /**
+     * Client browser User Agent
+     * @type {String}
+     */
+    userAgent: {},
     /**
      * Client browser details (property names depend on browser)
      * @type {Object}
@@ -283,6 +321,11 @@ Vue.prototype.$q = {
      * @type {Number}
      */
     height: {},
+    /**
+     * Tells current window breakpoint (reactive)
+     * @type {'xs'|'sm'|'md'|'lg'|'xl'}
+     */
+    name: {},
     /**
      * Breakpoints (in pixels) (reactive)
      * @type {{sm : Number, md : Number, lg : Number, xl : Number}}
@@ -354,13 +397,13 @@ Vue.prototype.$q = {
     /**
      * Get a storage item value
      * @param {String} key Entry key
-     * @returns {*} Storage item value
+     * @returns {Date|RegExp|Number|Boolean|Function|Object|Array|String|null} Storage item value
      */
     getItem (key) {},
     /**
      * Get the storage item value at specific index
      * @param {Number} index Entry index
-     * @returns {*} Storage item value
+     * @returns {Number|null} Storage item index
      */
     getIndex (index) {},
     /**
@@ -371,7 +414,7 @@ Vue.prototype.$q = {
     /**
      * Set item in storage
      * @param {String} key Entry key
-     * @param {*} value Entry value
+     * @param {Date|RegExp|Number|Boolean|Function|Object|Array|String|null} value Entry value
      * @returns  
      */
     set (key,value) {},

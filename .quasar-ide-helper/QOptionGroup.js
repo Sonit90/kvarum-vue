@@ -8,10 +8,17 @@ export default {
   name: 'QOptionGroup',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
     /**
      * Model of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {*}
@@ -26,6 +33,13 @@ export default {
       type: Array,
     },
     /**
+     * Used to specify the name of the controls; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
      * The type of input component to be used
      * @type {'radio'|'checkbox'|'toggle'}
      */
@@ -36,22 +50,22 @@ export default {
      * The type of input component to be used
      * @type {'radio'|'checkbox'|'toggle'}
      */
-    'type="radio" _': {
-      type: String,
+    'type="radio"': {
+      type: Boolean,
     },
     /**
      * The type of input component to be used
      * @type {'radio'|'checkbox'|'toggle'}
      */
-    'type="checkbox" _': {
-      type: String,
+    'type="checkbox"': {
+      type: Boolean,
     },
     /**
      * The type of input component to be used
      * @type {'radio'|'checkbox'|'toggle'}
      */
-    'type="toggle" _': {
-      type: String,
+    'type="toggle"': {
+      type: Boolean,
     },
     /**
      * Color name for component from the Quasar Color Palette

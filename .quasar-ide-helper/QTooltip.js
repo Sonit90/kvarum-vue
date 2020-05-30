@@ -58,14 +58,14 @@ export default {
       type: Boolean,
     },
     /**
-     * The maximimum height of the Tooltip; Size in CSS units, including unit name
+     * The maximum height of the Tooltip; Size in CSS units, including unit name
      * @type {String}
      */
     maxHeight: {
       type: String,
     },
     /**
-     * The maximimum width of the Tooltip; Size in CSS units, including unit name
+     * The maximum width of the Tooltip; Size in CSS units, including unit name
      * @type {String}
      */
     maxWidth: {
@@ -96,64 +96,64 @@ export default {
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="top left" _': {
-      type: String,
+    'anchor="top left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="top middle" _': {
-      type: String,
+    'anchor="top middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="top right" _': {
-      type: String,
+    'anchor="top right"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="center left" _': {
-      type: String,
+    'anchor="center left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="center middle" _': {
-      type: String,
+    'anchor="center middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="center right" _': {
-      type: String,
+    'anchor="center right"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="bottom left" _': {
-      type: String,
+    'anchor="bottom left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="bottom middle" _': {
-      type: String,
+    'anchor="bottom middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the starting position or anchor point of the Tooltip relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'anchor="bottom right" _': {
-      type: String,
+    'anchor="bottom right"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
@@ -166,64 +166,64 @@ export default {
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="top left" _': {
-      type: String,
+    'self="top left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="top middle" _': {
-      type: String,
+    'self="top middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="top right" _': {
-      type: String,
+    'self="top right"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="center left" _': {
-      type: String,
+    'self="center left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="center middle" _': {
-      type: String,
+    'self="center middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="center right" _': {
-      type: String,
+    'self="center right"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="bottom left" _': {
-      type: String,
+    'self="bottom left"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="bottom middle" _': {
-      type: String,
+    'self="bottom middle"': {
+      type: Boolean,
     },
     /**
      * Two values setting the Tooltip's own position relative to its target
      * @type {'top left'|'top middle'|'top right'|'center left'|'center middle'|'center right'|'bottom left'|'bottom middle'|'bottom right'}
      */
-    'self="bottom right" _': {
-      type: String,
+    'self="bottom right"': {
+      type: Boolean,
     },
     /**
      * An array of two numbers to offset the Tooltip horizontally and vertically in pixels
@@ -233,11 +233,25 @@ export default {
       type: Array,
     },
     /**
+     * CSS selector or DOM element to be used as a custom scroll container instead of the auto detected one
+     * @type {Element|String}
+     */
+    scrollTarget: {
+      type: [Element,String],
+    },
+    /**
      * Configure a target element to trigger Tooltip toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) it attaches the events to the specified DOM element (if it exists)
      * @type {Boolean|'(CSS selector)'}
      */
     target: {
       type: [Boolean,String],
+    },
+    /**
+     * Skips attaching events to the target DOM element (that trigger the element to get shown)
+     * @type {Boolean}
+     */
+    noParentEvent: {
+      type: Boolean,
     },
     /**
      * Configure Tooltip to appear with delay

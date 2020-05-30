@@ -8,7 +8,7 @@ export default {
   name: 'QRange',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {*} value New model value 
      */      
     '@input': function (value) {},
@@ -18,6 +18,13 @@ export default {
      * @param {*} value New model value 
      */      
     '@change': function (value) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Model of the component of type { min, max } (both values must be between global min/max); Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {{min : Number, max : Number}}
@@ -47,6 +54,13 @@ export default {
       type: Number,
     },
     /**
+     * Work in reverse (changes horizontal direction)
+     * @type {Boolean}
+     */
+    reverse: {
+      type: Boolean,
+    },
+    /**
      * User can drag range instead of just the two thumbs
      * @type {Boolean}
      */
@@ -57,7 +71,7 @@ export default {
      * User can drag only the range instead and NOT the two thumbs
      * @type {Boolean}
      */
-    dragRangeOnly: {
+    dragOnlyRange: {
       type: Boolean,
     },
     /**
@@ -82,6 +96,13 @@ export default {
       type: String,
     },
     /**
+     * Color name for labels text from the Quasar Color Palette; Applies to both labels, unless specific label text color props are used
+     * @type {String}
+     */
+    labelTextColor: {
+      type: String,
+    },
+    /**
      * Color name for left label background from the Quasar Color Palette
      * @type {String}
      */
@@ -89,10 +110,24 @@ export default {
       type: String,
     },
     /**
+     * Color name for left label text from the Quasar Color Palette
+     * @type {String}
+     */
+    leftLabelTextColor: {
+      type: String,
+    },
+    /**
      * Color name for right label background from the Quasar Color Palette
      * @type {String}
      */
     rightLabelColor: {
+      type: String,
+    },
+    /**
+     * Color name for right label text from the Quasar Color Palette
+     * @type {String}
+     */
+    rightLabelTextColor: {
       type: String,
     },
     /**
@@ -129,6 +164,13 @@ export default {
      */
     snap: {
       type: Boolean,
+    },
+    /**
+     * Set custom thumbs svg path
+     * @type {String}
+     */
+    thumbPath: {
+      type: String,
     },
     /**
      * Notify the component that the background is a dark color

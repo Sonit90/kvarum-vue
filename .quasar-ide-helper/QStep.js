@@ -22,7 +22,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
@@ -58,7 +58,7 @@ export default {
       type: [String,Number],
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     doneIcon: {
@@ -72,7 +72,7 @@ export default {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     activeIcon: {
@@ -86,7 +86,7 @@ export default {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     errorIcon: {

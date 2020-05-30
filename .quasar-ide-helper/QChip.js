@@ -39,14 +39,28 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * QChip size name or a CSS unit including unit name
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
+    },
+    /**
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
       type: String,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     iconRight: {
@@ -67,7 +81,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {

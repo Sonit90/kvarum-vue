@@ -1,24 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mystore from './mystore'
-
+import flats from './flats'
+import auth from './auth'
+import admin from './admin'
+import agencies from './agencies'
+import createPersistedState from 'vuex-persistedstate'
+import abilityPlugin from './auth/ability'
 Vue.use(Vuex)
 
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation
  */
+const Store = new Vuex.Store({
+  modules: {
+    agencies, auth, flats, admin
+  },
+  plugins: [createPersistedState({
+    paths: ['auth']
+  }), abilityPlugin],
 
-export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
-    modules: {
-      mystore
-    },
+  // enable strict mode (adds overhead!)
+  // for dev mode only
+  strict: process.env.DEV
+})
 
-    // enable strict mode (adds overhead!)
-    // for dev mode only
-    strict: process.env.DEV
-  })
-
-  return Store
-}
+export default Store

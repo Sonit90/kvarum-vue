@@ -8,12 +8,19 @@ export default {
   name: 'QDate',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {String} value New model value 
      * @param {'year'|'month'|'day'|'today'|'locale'|'mask'} reason Reason of the user interaction (what was picked) 
-     * @param {{year : Number, month : Number, day : Number}} details Object of properties on the new model 
+     * @param {{year : Number, month : Number, day : Number, changed : Boolean}} details Object of properties on the new model 
      */      
     '@input': function (value,reason,details) {},
+    /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
     /**
      * Date of the component; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {String}
@@ -54,15 +61,15 @@ export default {
      * Specify calendar type
      * @type {'gregorian'|'persian'}
      */
-    'calendar="gregorian" _': {
-      type: String,
+    'calendar="gregorian"': {
+      type: Boolean,
     },
     /**
      * Specify calendar type
      * @type {'gregorian'|'persian'}
      */
-    'calendar="persian" _': {
-      type: String,
+    'calendar="persian"': {
+      type: Boolean,
     },
     /**
      * Color name for component from the Quasar Color Palette
@@ -72,7 +79,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -83,6 +90,27 @@ export default {
      * @type {Boolean}
      */
     dark: {
+      type: Boolean,
+    },
+    /**
+     * Removes border-radius so borders are squared
+     * @type {Boolean}
+     */
+    square: {
+      type: Boolean,
+    },
+    /**
+     * Applies a 'flat' design (no default shadow)
+     * @type {Boolean}
+     */
+    flat: {
+      type: Boolean,
+    },
+    /**
+     * Applies a default border to the component
+     * @type {Boolean}
+     */
+    bordered: {
       type: Boolean,
     },
     /**
@@ -138,39 +166,39 @@ export default {
      * The view which will be displayed by default
      * @type {'Calendar'|'Months'|'Years'}
      */
-    'defaultView="Calendar" _': {
-      type: String,
+    'defaultView="Calendar"': {
+      type: Boolean,
     },
     /**
      * The view which will be displayed by default
      * @type {'Calendar'|'Months'|'Years'}
      */
-    'defaultView="Months" _': {
-      type: String,
+    'defaultView="Months"': {
+      type: Boolean,
     },
     /**
      * The view which will be displayed by default
      * @type {'Calendar'|'Months'|'Years'}
      */
-    'defaultView="Years" _': {
-      type: String,
+    'defaultView="Years"': {
+      type: Boolean,
     },
     /**
-     * A list of events to highlight on the calendar; If using a function, it receives the date as a String and must return a Boolean (matches or not)
+     * A list of events to highlight on the calendar; If using a function, it receives the date as a String and must return a Boolean (matches or not); If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {Array|Function}
      */
     events: {
       type: [Array,Function],
     },
     /**
-     * Color name (from the Quasar Color Palette); If using a function, it receives the date as a String and must return a String (color for the received date)
+     * Color name (from the Quasar Color Palette); If using a function, it receives the date as a String and must return a String (color for the received date); If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {String|Function}
      */
     eventColor: {
       type: [String,Function],
     },
     /**
-     * Optionally configure the days that are selectable; If using a function, it receives the date as a String and must return a Boolean (is date acceptable or not)
+     * Optionally configure the days that are selectable; If using a function, it receives the date as a String and must return a Boolean (is date acceptable or not); If using a function then for best performance, reference it from your scope and do not define it inline
      * @type {Array|Function}
      */
     options: {

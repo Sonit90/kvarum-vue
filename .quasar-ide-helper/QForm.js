@@ -50,6 +50,13 @@ export default {
      */
     noResetFocus: {
       type: Boolean,
+    },
+    /**
+     * Validate all fields in form (by default it stops after finding the first invalid field with synchronous validation)
+     * @type {Boolean}
+     */
+    greedy: {
+      type: Boolean,
     }
   }
 }

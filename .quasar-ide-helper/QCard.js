@@ -8,6 +8,13 @@ export default {
   name: 'QCard',
   props: {
     /**
+     * HTML tag to render
+     * @type {String}
+     */
+    tag: {
+      type: String,
+    },
+    /**
      * Notify the component that the background is a dark color
      * @type {Boolean}
      */

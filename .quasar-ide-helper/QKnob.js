@@ -8,7 +8,7 @@ export default {
   name: 'QKnob',
   props: {
     /**
-     * Emitted when component's model changes; Is also used by v-model
+     * Emitted when the component needs to change the model; Is also used by v-model
      * @param {Number} value New model value 
      */      
     '@input': function (value) {},
@@ -25,6 +25,20 @@ export default {
      */      
     '@drag-value': function (value) {},
     /**
+     * Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL
+     * @type {String}
+     */
+    name: {
+      type: String,
+    },
+    /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * Any number to indicate the given value of the knob. Either use this property (along with a listener for 'input' event) OR use the v-model directive
      * @type {Number}
      */
@@ -39,7 +53,7 @@ export default {
       type: Number,
     },
     /**
-     * The maximimum value that the model (the knob value) should go to
+     * The maximum value that the model (the knob value) should go to
      * @type {Number}
      */
     max: {
@@ -71,13 +85,6 @@ export default {
      * @type {String}
      */
     trackColor: {
-      type: String,
-    },
-    /**
-     * Size in CSS units, including unit name
-     * @type {String}
-     */
-    size: {
       type: String,
     },
     /**

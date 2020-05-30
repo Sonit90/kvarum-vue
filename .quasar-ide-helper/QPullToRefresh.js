@@ -39,6 +39,13 @@ export default {
      */
     disable: {
       type: Boolean,
+    },
+    /**
+     * CSS selector or DOM element to be used as a custom scroll container instead of the auto detected one
+     * @type {Element|String}
+     */
+    scrollTarget: {
+      type: [Element,String],
     }
   }
 }

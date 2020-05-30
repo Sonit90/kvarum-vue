@@ -27,6 +27,13 @@ export default {
      */
     rounded: {
       type: Boolean,
+    },
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
     }
   }
 }

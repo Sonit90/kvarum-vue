@@ -8,6 +8,17 @@ export default {
   name: 'QSlideTransition',
   props: {
     /**
+     * Emitted when component show animation is finished
+
+     */      
+    '@show': function () {},
+
+    /**
+     * Emitted when component hide animation is finished
+
+     */      
+    '@hide': function () {},
+    /**
      * If set to true, the transition will be applied on the initial render.
      * @type {Boolean}
      */

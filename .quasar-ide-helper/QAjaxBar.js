@@ -29,29 +29,29 @@ export default {
      * Position within window of where QAjaxBar should be displayed
      * @type {'top'|'right'|'bottom'|'left'}
      */
-    'position="top" _': {
-      type: String,
+    'position="top"': {
+      type: Boolean,
     },
     /**
      * Position within window of where QAjaxBar should be displayed
      * @type {'top'|'right'|'bottom'|'left'}
      */
-    'position="right" _': {
-      type: String,
+    'position="right"': {
+      type: Boolean,
     },
     /**
      * Position within window of where QAjaxBar should be displayed
      * @type {'top'|'right'|'bottom'|'left'}
      */
-    'position="bottom" _': {
-      type: String,
+    'position="bottom"': {
+      type: Boolean,
     },
     /**
      * Position within window of where QAjaxBar should be displayed
      * @type {'top'|'right'|'bottom'|'left'}
      */
-    'position="left" _': {
-      type: String,
+    'position="left"': {
+      type: Boolean,
     },
     /**
      * Size in CSS units, including unit name

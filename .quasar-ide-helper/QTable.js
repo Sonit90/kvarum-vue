@@ -8,6 +8,20 @@ export default {
   name: 'QTable',
   props: {
     /**
+     * Emitted when user clicks/taps on a row; Is not emitted when using body/row/item scoped slots
+     * @param {Object} evt JS event object 
+     * @param {Object} row The row upon which user has clicked/tapped 
+     */      
+    '@row-click': function (evt,row) {},
+
+    /**
+     * Emitted when user quickly double clicks/taps on a row; Is not emitted when using body/row/item scoped slots; Please check JS dblclick event support before using
+     * @param {Object} evt JS event object 
+     * @param {Object} row The row upon which user has double clicked/tapped 
+     */      
+    '@row-dblclick': function (evt,row) {},
+
+    /**
      * Emitted when a server request is triggered
      * @param {{pagination : {sortBy : String, descending : Boolean, page : Number, rowsPerPage : Number}, filter : Function, getCellValue : Function}} requestProp Props of the request 
      */      
@@ -30,11 +44,30 @@ export default {
      * @param {Array} newSelected The updated selected array 
      */      
     '@update:selected': function (newSelected) {},
+
+    /**
+     * Used by Vue on 'expanded.sync' prop for updating its value
+     * @param {Array} newExpanded The updated expanded array 
+     */      
+    '@update:expanded': function (newExpanded) {},
+
+    /**
+     * Emitted when the virtual scroll occurs, if using virtual scroll
+     * @param {{index : Number, from : Number, to : Number, direction : 'increase'|'decrease'}} details Object of properties on the new scroll position 
+     */      
+    '@virtual-scroll': function (details) {},
     /**
      * Fullscreen mode
      * @type {Boolean}
      */
     fullscreen: {
+      type: Boolean,
+    },
+    /**
+     * Changing route app won't exit fullscreen
+     * @type {Boolean}
+     */
+    noRouteFullscreenExit: {
       type: Boolean,
     },
     /**
@@ -45,11 +78,46 @@ export default {
       type: Array,
     },
     /**
-     * Property of each row that defines the unique key of each row; The value of property must be string or number
-     * @type {String}
+     * Property of each row that defines the unique key of each row (the result must be a primitive, not Object, Array, etc); The value of property must be string or a function taking a row and returning the desired (nested) key in the row; If supplying a function then for best performance, reference it from your scope and do not define it inline
+     * @type {String|Function}
      */
     rowKey: {
-      type: String,
+      type: [String,Function],
+    },
+    /**
+     * Display data using QVirtualScroll (for non-grid mode only)
+     * @type {Boolean}
+     */
+    virtualScroll: {
+      type: Boolean,
+    },
+    /**
+     * Number of rows to render in the virtual list
+     * @type {Number}
+     */
+    virtualScrollSliceSize: {
+      type: Number,
+    },
+    /**
+     * Default size in pixels of a row; This value is used for rendering the initial table; Try to use a value close to the minimum size of a row
+     * @type {Number}
+     */
+    virtualScrollItemSize: {
+      type: Number,
+    },
+    /**
+     * Size in pixels of the sticky header (if using one); A correct value will improve scroll precision
+     * @type {Number}
+     */
+    virtualScrollStickySizeStart: {
+      type: Number,
+    },
+    /**
+     * Size in pixels of the sticky footer part (if using one); A correct value will improve scroll precision
+     * @type {Number}
+     */
+    virtualScrollStickySizeEnd: {
+      type: Number,
     },
     /**
      * Color name for component from the Quasar Color Palette
@@ -63,6 +131,13 @@ export default {
      * @type {Boolean}
      */
     grid: {
+      type: Boolean,
+    },
+    /**
+     * Display header for grid-mode also
+     * @type {Boolean}
+     */
+    gridHeader: {
       type: Boolean,
     },
     /**
@@ -80,7 +155,7 @@ export default {
       type: Array,
     },
     /**
-     * Array of Strings defining column names ('name' property of each column from 'columns' prop definitions)
+     * Array of Strings defining column names ('name' property of each column from 'columns' prop definitions); Columns marked as 'required' are not affected by this property
      * @type {Array}
      */
     visibleColumns: {
@@ -153,29 +228,29 @@ export default {
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="horizontal" _': {
-      type: String,
+    'separator="horizontal"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="vertical" _': {
-      type: String,
+    'separator="vertical"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="cell" _': {
-      type: String,
+    'separator="cell"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="none" _': {
-      type: String,
+    'separator="none"': {
+      type: Boolean,
     },
     /**
      * Wrap text within table cells
@@ -213,7 +288,7 @@ export default {
       type: String,
     },
     /**
-     * Text to display when user selected at least one row
+     * Text to display when user selected at least one row; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     selectedRowsLabel: {
@@ -227,7 +302,7 @@ export default {
       type: String,
     },
     /**
-     * Text to override default pagination label at bottom of table (unless 'pagination' scoped slot is used)
+     * Text to override default pagination label at bottom of table (unless 'pagination' scoped slot is used); For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     paginationLabel: {
@@ -262,14 +337,28 @@ export default {
       type: [String,Array,Object],
     },
     /**
-     * CSS style to apply to the card
+     * CSS style to apply to the cards container (when in grid mode)
+     * @type {String|Array|Object}
+     */
+    cardContainerStyle: {
+      type: [String,Array,Object],
+    },
+    /**
+     * CSS classes to apply to the cards container (when in grid mode)
+     * @type {String|Array|Object}
+     */
+    cardContainerClass: {
+      type: [String,Array,Object],
+    },
+    /**
+     * CSS style to apply to the card (when in grid mode)
      * @type {String|Array|Object}
      */
     cardStyle: {
       type: [String,Array,Object],
     },
     /**
-     * CSS classes to apply to the card
+     * CSS classes to apply to the card (when in grid mode)
      * @type {String|Array|Object}
      */
     cardClass: {
@@ -283,7 +372,7 @@ export default {
       type: [String,Object],
     },
     /**
-     * The actual filtering mechanism
+     * The actual filtering mechanism; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     filterMethod: {
@@ -314,22 +403,22 @@ export default {
      * Selection type
      * @type {'single'|'multiple'|'none'}
      */
-    'selection="single" _': {
-      type: String,
+    'selection="single"': {
+      type: Boolean,
     },
     /**
      * Selection type
      * @type {'single'|'multiple'|'none'}
      */
-    'selection="multiple" _': {
-      type: String,
+    'selection="multiple"': {
+      type: Boolean,
     },
     /**
      * Selection type
      * @type {'single'|'multiple'|'none'}
      */
-    'selection="none" _': {
-      type: String,
+    'selection="none"': {
+      type: Boolean,
     },
     /**
      * Keeps the user selection array
@@ -339,7 +428,14 @@ export default {
       type: Array,
     },
     /**
-     * The actual sort mechanism. Function (rows, sortBy, descending) => sorted rows
+     * Keeps the array with expanded rows keys
+     * @type {Array}
+     */
+    expanded: {
+      type: Array,
+    },
+    /**
+     * The actual sort mechanism. Function (rows, sortBy, descending) => sorted rows; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     sortMethod: {

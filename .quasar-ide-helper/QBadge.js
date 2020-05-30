@@ -15,7 +15,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -29,7 +29,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Applies a 0.8 opacity; Useful especially for floating QBagde
+     * Applies a 0.8 opacity; Useful especially for floating QBadge
      * @type {Boolean}
      */
     transparent: {
@@ -60,22 +60,29 @@ export default {
      * Sets vertical-align CSS prop
      * @type {'top'|'middle'|'bottom'}
      */
-    'align="top" _': {
-      type: String,
+    'align="top"': {
+      type: Boolean,
     },
     /**
      * Sets vertical-align CSS prop
      * @type {'top'|'middle'|'bottom'}
      */
-    'align="middle" _': {
-      type: String,
+    'align="middle"': {
+      type: Boolean,
     },
     /**
      * Sets vertical-align CSS prop
      * @type {'top'|'middle'|'bottom'}
      */
-    'align="bottom" _': {
-      type: String,
+    'align="bottom"': {
+      type: Boolean,
+    },
+    /**
+     * Use 'outline' design (colored text and borders only)
+     * @type {Boolean}
+     */
+    outline: {
+      type: Boolean,
     }
   }
 }

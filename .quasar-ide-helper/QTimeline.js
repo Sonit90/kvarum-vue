@@ -15,25 +15,25 @@ export default {
       type: String,
     },
     /**
-     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overriden by QTimelineEntry side prop
+     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop
      * @type {'left'|'right'}
      */
     side: {
       type: String,
     },
     /**
-     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overriden by QTimelineEntry side prop
+     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop
      * @type {'left'|'right'}
      */
-    'side="left" _': {
-      type: String,
+    'side="left"': {
+      type: Boolean,
     },
     /**
-     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overriden by QTimelineEntry side prop
+     * Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop
      * @type {'left'|'right'}
      */
-    'side="right" _': {
-      type: String,
+    'side="right"': {
+      type: Boolean,
     },
     /**
      * Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.
@@ -46,22 +46,22 @@ export default {
      * Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.
      * @type {'dense'|'comfortable'|'loose'}
      */
-    'layout="dense" _': {
-      type: String,
+    'layout="dense"': {
+      type: Boolean,
     },
     /**
      * Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.
      * @type {'dense'|'comfortable'|'loose'}
      */
-    'layout="comfortable" _': {
-      type: String,
+    'layout="comfortable"': {
+      type: Boolean,
     },
     /**
      * Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.
      * @type {'dense'|'comfortable'|'loose'}
      */
-    'layout="loose" _': {
-      type: String,
+    'layout="loose"': {
+      type: Boolean,
     },
     /**
      * Notify the component that the background is a dark color

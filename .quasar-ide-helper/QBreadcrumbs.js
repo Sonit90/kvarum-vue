@@ -32,43 +32,43 @@ export default {
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="none" _': {
-      type: String,
+    'gutter="none"': {
+      type: Boolean,
     },
     /**
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="xs" _': {
-      type: String,
+    'gutter="xs"': {
+      type: Boolean,
     },
     /**
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="sm" _': {
-      type: String,
+    'gutter="sm"': {
+      type: Boolean,
     },
     /**
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="md" _': {
-      type: String,
+    'gutter="md"': {
+      type: Boolean,
     },
     /**
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="lg" _': {
-      type: String,
+    'gutter="lg"': {
+      type: Boolean,
     },
     /**
      * The gutter value allows you control over the space between the breadcrumb elements.
      * @type {'none'|'xs'|'sm'|'md'|'lg'|'xl'}
      */
-    'gutter="xl" _': {
-      type: String,
+    'gutter="xl"': {
+      type: Boolean,
     },
     /**
      * The color used to color the separator, which can be any color from the Quasar Color Palette
@@ -79,45 +79,52 @@ export default {
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
     align: {
       type: String,
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
-    'align="left" _': {
-      type: String,
+    'align="left"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
-    'align="center" _': {
-      type: String,
+    'align="center"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
-    'align="right" _': {
-      type: String,
+    'align="right"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
-    'align="between" _': {
-      type: String,
+    'align="between"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the breadcrumbs horizontally
-     * @type {'left'|'center'|'right'|'between'|'around'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
      */
-    'align="around" _': {
-      type: String,
+    'align="around"': {
+      type: Boolean,
+    },
+    /**
+     * Specify how to align the breadcrumbs horizontally
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'}
+     */
+    'align="evenly"': {
+      type: Boolean,
     }
   }
 }

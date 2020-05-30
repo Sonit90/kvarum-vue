@@ -53,29 +53,29 @@ export default {
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="horizontal" _': {
-      type: String,
+    'separator="horizontal"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="vertical" _': {
-      type: String,
+    'separator="vertical"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="cell" _': {
-      type: String,
+    'separator="cell"': {
+      type: Boolean,
     },
     /**
      * Use a separator/border between rows, columns or all cells
      * @type {'horizontal'|'vertical'|'cell'|'none'}
      */
-    'separator="none" _': {
-      type: String,
+    'separator="none"': {
+      type: Boolean,
     },
     /**
      * Wrap text within table cells

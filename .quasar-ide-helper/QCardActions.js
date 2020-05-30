@@ -9,52 +9,59 @@ export default {
   props: {
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
     align: {
       type: String,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="left" _': {
-      type: String,
+    'align="left"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="center" _': {
-      type: String,
+    'align="center"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="right" _': {
-      type: String,
+    'align="right"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="between" _': {
-      type: String,
+    'align="between"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="around" _': {
-      type: String,
+    'align="around"': {
+      type: Boolean,
     },
     /**
      * Specify how to align the actions
-     * @type {'left'|'center'|'right'|'between'|'around'|'stretch'}
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
      */
-    'align="stretch" _': {
-      type: String,
+    'align="evenly"': {
+      type: Boolean,
+    },
+    /**
+     * Specify how to align the actions
+     * @type {'left'|'center'|'right'|'between'|'around'|'evenly'|'stretch'}
+     */
+    'align="stretch"': {
+      type: Boolean,
     },
     /**
      * Display actions one below the other

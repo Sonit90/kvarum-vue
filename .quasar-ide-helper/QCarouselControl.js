@@ -18,57 +18,57 @@ export default {
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="topRight" _': {
-      type: String,
+    'position="topRight"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="topLeft" _': {
-      type: String,
+    'position="topLeft"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottomRight" _': {
-      type: String,
+    'position="bottomRight"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottomLeft" _': {
-      type: String,
+    'position="bottomLeft"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="top" _': {
-      type: String,
+    'position="top"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="right" _': {
-      type: String,
+    'position="right"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="bottom" _': {
-      type: String,
+    'position="bottom"': {
+      type: Boolean,
     },
     /**
      * Side/corner to stick to
      * @type {'top-right'|'top-left'|'bottom-right'|'bottom-left'|'top'|'right'|'bottom'|'left'}
      */
-    'position="left" _': {
-      type: String,
+    'position="left"': {
+      type: Boolean,
     },
     /**
      * An array of two numbers to offset the component horizontally and vertically (in pixels)

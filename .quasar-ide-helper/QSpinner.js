@@ -8,7 +8,7 @@ export default {
   name: 'QSpinner',
   props: {
     /**
-     * Size in CSS units, including unit name
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
      * @type {String}
      */
     size: {

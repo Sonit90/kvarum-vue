@@ -20,6 +20,13 @@ export default {
      */
     autoWidth: {
       type: Boolean,
+    },
+    /**
+     * Disable hover effect
+     * @type {Boolean}
+     */
+    noHover: {
+      type: Boolean,
     }
   }
 }

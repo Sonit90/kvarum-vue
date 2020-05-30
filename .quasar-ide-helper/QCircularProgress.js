@@ -8,6 +8,13 @@ export default {
   name: 'QCircularProgress',
   props: {
     /**
+     * Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)
+     * @type {String}
+     */
+    size: {
+      type: String,
+    },
+    /**
      * Current progress (must be between min/max)
      * @type {Number}
      */
@@ -47,13 +54,6 @@ export default {
      * @type {String}
      */
     trackColor: {
-      type: String,
-    },
-    /**
-     * Size in CSS units, including unit name
-     * @type {String}
-     */
-    size: {
       type: String,
     },
     /**

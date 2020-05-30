@@ -8,6 +8,13 @@ export default {
   name: 'QItem',
   props: {
     /**
+     * HTML tag to render; Suggestion: use 'label' when encapsulating a QCheckbox/QRadio/QToggle so that when user clicks/taps on the whole item it will trigger a model change for the mentioned components
+     * @type {String}
+     */
+    tag: {
+      type: String,
+    },
+    /**
      * Equivalent to Vue Router <router-link> 'to' property
      * @type {String|Object}
      */
@@ -97,13 +104,6 @@ export default {
      */
     tabindex: {
       type: [Number,String],
-    },
-    /**
-     * HTML tag to render; Suggestion: use 'label' when encapsulating a QCheckbox/QRadio/QToggle so that when user clicks/taps on the whole item it will trigger a model change for the mentioned components
-     * @type {String}
-     */
-    tag: {
-      type: String,
     },
     /**
      * Put item into a manual focus state; Enables 'focused' prop which will determine if item is focused or not, rather than relying on native hover/focus states

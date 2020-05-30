@@ -60,6 +60,12 @@ export default {
      * @param {Object} evt JS event object 
      */      
     '@mouseout': function (evt) {},
+
+    /**
+     * Emitted when drawer changes the mini-mode state (sometimes it is forced to do so)
+     * @param {Boolean} state New state 
+     */      
+    '@mini-state': function (state) {},
     /**
      * Model of the component defining shown/hidden state; Either use this property (along with a listener for 'input' event) OR use v-model directive
      * @type {Boolean}
@@ -78,18 +84,18 @@ export default {
      * Side to attach to
      * @type {'left'|'right'}
      */
-    'side="left" _': {
-      type: String,
+    'side="left"': {
+      type: Boolean,
     },
     /**
      * Side to attach to
      * @type {'left'|'right'}
      */
-    'side="right" _': {
-      type: String,
+    'side="right"': {
+      type: Boolean,
     },
     /**
-     * Puts drawer into overlay mode (does not occupies space on screen, narrowing the page)
+     * Puts drawer into overlay mode (does not occupy space on screen, narrowing the page)
      * @type {Boolean}
      */
     overlay: {
@@ -110,11 +116,18 @@ export default {
       type: Boolean,
     },
     /**
-     * Width of drawer (in pixels) when in mini-mode
+     * Width of drawer (in pixels) when in mini mode
      * @type {Number}
      */
     miniWidth: {
       type: Number,
+    },
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
     },
     /**
      * Mini mode will expand as an overlay
@@ -141,22 +154,22 @@ export default {
      * Overrides the default dynamic mode into which the drawer is put on
      * @type {'default'|'desktop'|'mobile'}
      */
-    'behavior="default" _': {
-      type: String,
+    'behavior="default"': {
+      type: Boolean,
     },
     /**
      * Overrides the default dynamic mode into which the drawer is put on
      * @type {'default'|'desktop'|'mobile'}
      */
-    'behavior="desktop" _': {
-      type: String,
+    'behavior="desktop"': {
+      type: Boolean,
     },
     /**
      * Overrides the default dynamic mode into which the drawer is put on
      * @type {'default'|'desktop'|'mobile'}
      */
-    'behavior="mobile" _': {
-      type: String,
+    'behavior="mobile"': {
+      type: Boolean,
     },
     /**
      * Applies a default border to the component
@@ -180,7 +193,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Force drawer to be shown on screen on initial render if the layout width is above breakpoint
+     * Force drawer to be shown on screen on initial render if the layout width is above breakpoint, regardless of v-model; This is the default behavior when SSR is taken over by client on initial render
      * @type {Boolean}
      */
     showIfAbove: {
@@ -212,6 +225,13 @@ export default {
      * @type {Boolean}
      */
     noSwipeClose: {
+      type: Boolean,
+    },
+    /**
+     * Disable the default behavior where drawer backdrop can be swiped
+     * @type {Boolean}
+     */
+    noSwipeBackdrop: {
       type: Boolean,
     }
   }

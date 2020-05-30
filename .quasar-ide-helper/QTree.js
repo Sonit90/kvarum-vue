@@ -30,6 +30,18 @@ export default {
      * @param {*} target The selected node key 
      */      
     '@update:selected': function (target) {},
+
+    /**
+     * Emitted when component show animation is finished
+
+     */      
+    '@after-show': function () {},
+
+    /**
+     * Emitted when component hide animation is finished
+
+     */      
+    '@after-hide': function () {},
     /**
      * The array of nodes that designates the tree structure
      * @type {Array}
@@ -54,6 +66,13 @@ export default {
       type: String,
     },
     /**
+     * Do not display the connector lines between nodes
+     * @type {Boolean}
+     */
+    noConnectors: {
+      type: Boolean,
+    },
+    /**
      * Color name for component from the Quasar Color Palette
      * @type {String}
      */
@@ -68,7 +87,7 @@ export default {
       type: String,
     },
     /**
-     * Overrides text color (if needed); color name from the Quasar Color Palette
+     * Overrides text color (if needed); Color name from the Quasar Color Palette
      * @type {String}
      */
     textColor: {
@@ -89,7 +108,7 @@ export default {
       type: Boolean,
     },
     /**
-     * Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix
+     * Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix
      * @type {String}
      */
     icon: {
@@ -106,29 +125,29 @@ export default {
      * The type of strategy to use for the selection of the nodes
      * @type {'none'|'strict'|'leaf'|'leaf-filtered'}
      */
-    'tickStrategy="none" _': {
-      type: String,
+    'tickStrategy="none"': {
+      type: Boolean,
     },
     /**
      * The type of strategy to use for the selection of the nodes
      * @type {'none'|'strict'|'leaf'|'leaf-filtered'}
      */
-    'tickStrategy="strict" _': {
-      type: String,
+    'tickStrategy="strict"': {
+      type: Boolean,
     },
     /**
      * The type of strategy to use for the selection of the nodes
      * @type {'none'|'strict'|'leaf'|'leaf-filtered'}
      */
-    'tickStrategy="leaf" _': {
-      type: String,
+    'tickStrategy="leaf"': {
+      type: Boolean,
     },
     /**
      * The type of strategy to use for the selection of the nodes
      * @type {'none'|'strict'|'leaf'|'leaf-filtered'}
      */
-    'tickStrategy="leafFiltered" _': {
-      type: String,
+    'tickStrategy="leafFiltered"': {
+      type: Boolean,
     },
     /**
      * Keys of nodes that are ticked
@@ -172,7 +191,7 @@ export default {
       type: String,
     },
     /**
-     * The function to use to filter the tree nodes
+     * The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline
      * @type {Function}
      */
     filterMethod: {

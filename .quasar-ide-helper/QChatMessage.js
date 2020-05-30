@@ -43,7 +43,7 @@ export default {
       type: String,
     },
     /**
-     * URL to the avatar image of the author; Suggestion: use a static resource
+     * URL to the avatar image of the author
      * @type {String}
      */
     avatar: {
@@ -51,10 +51,10 @@ export default {
     },
     /**
      * Array of strings that are the message body. Strings are not sanitized (see details in docs)
-     * @type {String}
+     * @type {Array}
      */
     text: {
-      type: String,
+      type: Array,
     },
     /**
      * Creation timestamp

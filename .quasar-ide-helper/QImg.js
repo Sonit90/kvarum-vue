@@ -19,6 +19,13 @@ export default {
      */      
     '@error': function (src) {},
     /**
+     * Force the component to maintain an aspect ratio
+     * @type {String|Number|String|Number}
+     */
+    ratio: {
+      type: [String,Number,String,Number],
+    },
+    /**
      * Path to image
      * @type {String}
      */
@@ -37,6 +44,20 @@ export default {
      * @type {String}
      */
     sizes: {
+      type: String,
+    },
+    /**
+     * Forces image width; Must also include the unit (px or %)
+     * @type {String}
+     */
+    width: {
+      type: String,
+    },
+    /**
+     * Forces image height; Must also include the unit (px or %)
+     * @type {String}
+     */
+    height: {
       type: String,
     },
     /**
@@ -75,18 +96,25 @@ export default {
       type: String,
     },
     /**
-     * Force the component to maintain an aspect ratio
-     * @type {String|Number}
-     */
-    ratio: {
-      type: [String,Number],
-    },
-    /**
      * One of Quasar's embedded transitions
      * @type {String}
      */
     transition: {
       type: String,
+    },
+    /**
+     * Class definitions to be attributed to the container of image; Does not apply to the caption
+     * @type {Array|String|Object}
+     */
+    imgClass: {
+      type: [Array,String,Object],
+    },
+    /**
+     * Apply CSS to the container of the image; Does not apply to the caption
+     * @type {Object}
+     */
+    imgStyle: {
+      type: Object,
     },
     /**
      * Color name for default Spinner (unless using a 'loading' slot)
@@ -101,6 +129,20 @@ export default {
      */
     spinnerSize: {
       type: String,
+    },
+    /**
+     * Do not display the default spinner when loading images (unless you are specifying one through the 'loading' slot)
+     * @type {Boolean}
+     */
+    noDefaultSpinner: {
+      type: Boolean,
+    },
+    /**
+     * Enable the native context menu of the image
+     * @type {Boolean}
+     */
+    nativeContextMenu: {
+      type: Boolean,
     }
   }
 }

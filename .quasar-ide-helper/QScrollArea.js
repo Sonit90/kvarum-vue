@@ -8,6 +8,25 @@ export default {
   name: 'QScrollArea',
   props: {
     /**
+     * Emitted when scroll information changes (and listener is configured)
+     * @param {{ref : Object, verticalPosition : Number, verticalPercentage : Number, verticalSize : Number, verticalContainerSize : Number, horizontalPosition : Number, horizontalPercentage : Number, horizontalSize : Number, horizontalContainerSize : Number}} info undefined 
+     */      
+    '@scroll': function (info) {},
+    /**
+     * Notify the component that the background is a dark color
+     * @type {Boolean}
+     */
+    dark: {
+      type: Boolean,
+    },
+    /**
+     * Object with CSS properties and values for styling the custom scrollbar
+     * @type {Array|String|Object}
+     */
+    barStyle: {
+      type: [Array,String,Object],
+    },
+    /**
      * Object with CSS properties and values for styling the thumb of custom scrollbar
      * @type {Object}
      */
@@ -16,20 +35,27 @@ export default {
     },
     /**
      * Object with CSS properties and values for styling the container of QScrollArea
-     * @type {Object}
+     * @type {Array|String|Object}
      */
     contentStyle: {
-      type: Object,
+      type: [Array,String,Object],
     },
     /**
      * Object with CSS properties and values for styling the container of QScrollArea when scroll area becomes active (is mouse hovered)
-     * @type {Object}
+     * @type {Array|String|Object}
      */
     contentActiveStyle: {
-      type: Object,
+      type: [Array,String,Object],
     },
     /**
-     * When content changes, the scrollbar appears; this delay defines the amount of time (in milliseconds) before scrollbars dissapear again (if component is not hovered)
+     * (Desktop only) Manually control the visibility of the scrollbar; Overrides default mouse over/leave behavior
+     * @type {Boolean}
+     */
+    visible: {
+      type: Boolean,
+    },
+    /**
+     * When content changes, the scrollbar appears; this delay defines the amount of time (in milliseconds) before scrollbars disappear again (if component is not hovered)
      * @type {Number|String}
      */
     delay: {

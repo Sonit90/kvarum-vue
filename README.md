@@ -1,4 +1,4 @@
-# ExcelX
+# Kvarum-vue
 Quasar docs are located here: https://quasar.dev/start/pick-quasar-flavour
 
 To instal global quasar CLI:
